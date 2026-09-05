@@ -92,13 +92,19 @@
   <!-- Mobile Drawer -->
   <div class="drawer-backdrop" id="drawerBackdrop"></div>
   <aside class="mobile-drawer" id="mobileDrawer">
-    <div>
-      <div style="margin-bottom: 30px;">
+    <div class="drawer-inner-top">
+      <div class="drawer-top-bar">
         <a href="#hero" class="brand-logo-link" aria-label="Z9 Creative Studio Home">
-          <img src="assets/z9-logo.png" alt="Z9 Logo" class="brand-logo-img" style="height: 38px;">
-          <span class="brand-logo-divider" aria-hidden="true" style="height: 18px;"></span>
-          <span class="brand-logo-tagline" style="font-size: 0.74rem;">CREATIVE STUDIO</span>
+          <img src="assets/z9-logo.png" alt="Z9 Logo" class="brand-logo-img">
+          <span class="brand-logo-divider" aria-hidden="true"></span>
+          <span class="brand-logo-tagline">CREATIVE STUDIO</span>
         </a>
+        <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Mobile Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
       <ul class="mobile-nav-list">
         <li><a href="#hero" class="mobile-nav-link active">Home</a></li>
@@ -110,9 +116,9 @@
         <li><a href="#contact" class="mobile-nav-link">Contact Studio</a></li>
       </ul>
     </div>
-    <div>
-      <a href="#contact" class="btn btn-primary" style="width: 100%;">Book an Experience</a>
-      <p style="margin-top: 20px; font-size: 0.8rem; color: var(--smoke-gray); text-align: center;">z9creativestudio.com</p>
+    <div class="drawer-inner-bottom">
+      <a href="#contact" class="btn btn-primary" id="mobileDrawerCta" style="width: 100%;">Book an Experience</a>
+      <p style="margin-top: 16px; font-size: 0.78rem; color: var(--smoke-gray); text-align: center; letter-spacing: 0.05em;">z9creativestudio.com</p>
     </div>
   </aside>
 

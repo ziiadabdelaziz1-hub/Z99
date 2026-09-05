@@ -184,9 +184,21 @@ function initMobileDrawer() {
     document.body.style.overflow = '';
   }
 
+  const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+  const mobileDrawerCta = document.getElementById('mobileDrawerCta');
+
   hamburger.addEventListener('click', toggleMenu);
   backdrop.addEventListener('click', closeMenu);
+  if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeMenu);
+  if (mobileDrawerCta) mobileDrawerCta.addEventListener('click', closeMenu);
   mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      closeMenu();
+    }
+  });
 }
 
 /* ==========================================================================
