@@ -221,7 +221,7 @@ button, input, textarea {
 .brand-logo-link {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   text-decoration: none;
   z-index: 1002;
 }
@@ -233,33 +233,38 @@ button, input, textarea {
   transition: transform var(--transition-smooth), filter var(--transition-smooth);
 }
 
-.brand-logo-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.brand-logo-title {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 900;
-  line-height: 1;
-  color: var(--soft-white);
-  letter-spacing: 0.05em;
+.brand-logo-divider {
+  width: 1px;
+  height: 22px;
+  background-color: var(--graphite);
+  display: inline-block;
+  opacity: 0.85;
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .brand-logo-tagline {
   font-family: var(--font-body);
-  font-size: 0.62rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.22em;
-  color: var(--neon-lime);
+  color: var(--soft-white);
   text-transform: uppercase;
-  margin-top: 3px;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
 }
 
 .brand-logo-link:hover .brand-logo-img {
   transform: scale(1.06);
-  filter: drop-shadow(0 0 10px var(--lime-glow));
+  filter: drop-shadow(0 0 12px var(--lime-glow));
+}
+
+.brand-logo-link:hover .brand-logo-divider {
+  background-color: var(--neon-lime);
+  box-shadow: 0 0 8px var(--lime-glow);
+}
+
+.brand-logo-link:hover .brand-logo-tagline {
+  color: var(--neon-lime);
 }
 
 /* Nav Links Desktop */
