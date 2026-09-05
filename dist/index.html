@@ -10,17 +10,27 @@
   <meta name="keywords" content="Z9, Z9 Creative Studio, 3D projection mapping, event visuals, weddings, concerts, anamorphic LED, holograms">
   <meta name="author" content="Z9 Creative Studio">
   
-  <!-- Open Graph / Meta -->
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/png" sizes="128x128" href="assets/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  
+  <!-- Open Graph / Meta (Rich WhatsApp/iMessage/LinkedIn share cards) -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://z9creativestudio.com/">
+  <meta property="og:url" content="https://z9-creative-studio.vercel.app/">
+  <meta property="og:site_name" content="Z9 Creative Studio">
   <meta property="og:title" content="Z9 Creative Studio | Immersive Experiences &amp; 3D Projection Mapping">
-  <meta property="og:description" content="Specializing in 3D projection mapping, wedding visuals, stadium concert staging, and brand experiences worldwide.">
-  <meta property="og:image" content="assets/facade.jpg">
+  <meta property="og:description" content="Worldwide 3D architectural projection mapping, luxury weddings, stadium concert stage production, and anamorphic LED displays.">
+  <meta property="og:image" content="assets/z9-og-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Z9 Creative Studio | Immersive Experiences">
+  <meta name="twitter:description" content="Worldwide 3D architectural projection mapping, luxury weddings, stadium concert stage production, and anamorphic LED displays.">
+  <meta name="twitter:image" content="assets/z9-og-preview.jpg">
   
   <meta name="theme-color" content="#050505">
-
-  <!-- Favicon / SVG Emblem -->
-  <link rel="icon" type="image/svg+xml" href="assets/z9-logo.svg">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css">
@@ -35,7 +45,11 @@
       
       <!-- Brand Logo -->
       <a href="#hero" class="brand-logo-link" aria-label="Z9 Creative Studio Home">
-        <img src="assets/z9-logo.svg" alt="Z9 Creative Studio" class="brand-logo-img">
+        <img src="assets/z9-logo.png" alt="Z9 Logo" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-logo-title">Z9</span>
+          <span class="brand-logo-tagline">CREATIVE STUDIO</span>
+        </div>
       </a>
 
       <!-- Desktop Navigation Menu -->
@@ -82,7 +96,13 @@
   <aside class="mobile-drawer" id="mobileDrawer">
     <div>
       <div style="margin-bottom: 30px;">
-        <img src="assets/z9-logo.svg" alt="Z9" style="height: 38px;">
+        <a href="#hero" class="brand-logo-link" aria-label="Z9 Creative Studio Home">
+          <img src="assets/z9-logo.png" alt="Z9 Logo" class="brand-logo-img" style="height: 38px;">
+          <div class="brand-logo-text">
+            <span class="brand-logo-title">Z9</span>
+            <span class="brand-logo-tagline">CREATIVE STUDIO</span>
+          </div>
+        </a>
       </div>
       <ul class="mobile-nav-list">
         <li><a href="#hero" class="mobile-nav-link active">Home</a></li>
@@ -595,7 +615,13 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="assets/z9-logo.svg" alt="Z9 Creative Studio" style="height: 42px; margin-bottom: 12px;">
+          <div class="brand-logo-link" style="margin-bottom: 14px;">
+            <img src="assets/z9-logo.png" alt="Z9 Logo" class="brand-logo-img" style="height: 42px;">
+            <div class="brand-logo-text">
+              <span class="brand-logo-title">Z9</span>
+              <span class="brand-logo-tagline">CREATIVE STUDIO</span>
+            </div>
+          </div>
           <p class="footer-tagline">
             Specialized in 3D projection mapping, concerts, weddings, parties, and global experiential entertainment.
           </p>
