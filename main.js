@@ -1,6 +1,6 @@
 /**
- * Z9 CREATIVE STUDIO - Core Interactive Engine
- * Domain: z9creativestudio.com
+ * Z99 CREATIVE STUDIO - Core Interactive Engine
+ * Domain: z99creativestudio.com
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -329,7 +329,7 @@ function initVideoModal() {
   const videoSrc = "https://www.youtube.com/embed/QvrO3Alz96U?autoplay=1&rel=0&modestbranding=1";
 
   function openModal() {
-    frameContainer.innerHTML = `<iframe src="${videoSrc}" title="Z9 Creative Studio Showreel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    frameContainer.innerHTML = `<iframe src="${videoSrc}" title="Z99 Creative Studio Showreel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -360,32 +360,32 @@ function initVideoModal() {
    ========================================================================== */
 const projectData = {
   weddings: {
-    title: "Luxury Wedding Architectural Mapping",
+    title: "Weddings: Immersive Venue Mapping",
     category: "Weddings & Celebrations",
     image: "assets/wedding.jpg",
-    specs: ["Ballroom 360° Mapping", "Custom Visual Storytelling", "Cake Projection Sync", "Dynamic Lighting Setup"],
-    desc: "Transforming high-end wedding venues into magical, dynamic dreamscapes. From digital cathedral arches with glowing floral animations to synchronized first-dance light shows, Z9 turns wedding architecture into pure poetry."
+    specs: ["Venue Transformations", "Bridal Entrance Visuals", "Cake Projection Mapping", "Dreamlike Table-Scapes"],
+    desc: "From venue transformations and bridal entrance visuals to cake mapping and dreamlike table-scape visuals, we craft magical, personalized environments that bring the couple's story to life."
   },
   concerts: {
-    title: "Stadium Concert & Festival Visuals",
+    title: "Parties & Concerts",
     category: "Concerts & Music Festivals",
     image: "assets/concert.jpg",
-    specs: ["Gigantic Kinetic LED Arrays", "Real-Time Audio Reactive VJ", "Laser Beam Integration", "Ultra-Low Latency Staging"],
-    desc: "High-voltage visual engineering designed for maximum crowd impact. We build massive multi-layered geometric LED screens, synchronized strobe choreography, and custom 3D motion loops that electrify arena audiences."
+    specs: ["Pulsing Festival Stages", "Projection Mapping Rigs", "Audio-Reactive Visual Loops", "Crowd Euphoria Engineering"],
+    desc: "Pulsing festival stage visuals, projection mapping, and real-time audio-reactive visual loops engineered to amplify crowd euphoria."
   },
   keynote: {
-    title: "Anamorphic 3D Corporate Keynotes",
-    category: "Brand Events & Conferences",
+    title: "Events & Brand Experiences",
+    category: "Brand Experiences & Keynotes",
     image: "assets/keynote.jpg",
-    specs: ["Curved 3D Anamorphic Display", "Holographic Product Reveals", "Keynote Staging Direction", "Interactive Audience LED"],
-    desc: "Empowering visionary global brands to deliver show-stopping product unveilings. Featuring hyperrealistic 3D illusions where products appear to float out of the screen toward the audience."
+    specs: ["Product Launch Reveals", "Executive Conferences", "Anamorphic 3D LED Screens", "Feed-Dominating Show Design"],
+    desc: "From product launches to executive conferences, we bring events to life with reveal shows, projection mapping, and full-scale event visuals — anamorphic 3D LED screens and immersive show design engineered to dominate the room, and the feed."
   },
   facade: {
-    title: "Monumental 3D Building Facade Mapping",
-    category: "3D Projection Mapping & Holograms",
+    title: "Architectural 3D Projection Mapping",
+    category: "Architectural Projection Mapping",
     image: "assets/facade.jpg",
-    specs: ["Multi-Projector 40,000+ Lumens Sync", "3D LiDAR Laser Scanned Facades", "Illusionary Architectural Deconstruction", "Outdoor Waterproof Rigs"],
-    desc: "Taking monumental public buildings and turning historic facades into living optical illusions. Combining 3D architectural geometry with cinematic audio scores for national celebrations and mega festivals."
+    specs: ["Building & Facade Mapping", "Historic Structure Projection", "360° Domes & Spheres", "Water-Screen Illusions"],
+    desc: "Bringing physical surfaces to life. We map buildings, historic structures, domes, and water screens with precision-calibrated projection — turning static structures into large-scale visual stories."
   }
 };
 
@@ -468,7 +468,7 @@ function initContactForm() {
     }
 
     // Success feedback
-    showToast(`Thank you, ${name}! Your inquiry has been dispatched to Z9 Studio.`);
+    showToast(`Thank you, ${name}! Your inquiry has been dispatched to Z99 Studio.`);
     form.reset();
   });
 
