@@ -325,17 +325,21 @@ function initVideoModal() {
 
   if (!modal || !frameContainer) return;
 
-  // Z99 Official 2026 Showreel YouTube Video ID: 6-HUUaqAr_Q
-  const videoSrc = "https://www.youtube.com/embed/6-HUUaqAr_Q?autoplay=1&rel=0&modestbranding=1";
-
   function openModal() {
-    frameContainer.innerHTML = `<iframe src="${videoSrc}" title="Z99 Creative Studio Showreel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    frameContainer.innerHTML = `
+      <video controls autoplay playsinline controlslist="nodownload" poster="assets/abdeen-palace.jpg">
+        <source src="assets/z99-showreel.mp4" type="video/mp4">
+        Your browser does not support HTML5 video playback.
+      </video>
+    `;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeModal() {
     modal.classList.remove('open');
+    const vid = frameContainer.querySelector('video');
+    if (vid) vid.pause();
     frameContainer.innerHTML = '';
     document.body.style.overflow = '';
   }
@@ -363,6 +367,7 @@ const projectData = {
     title: "Abdeen Palace: Royal Bridal Entrance 3D Mapping",
     category: "Monumental Architectural Mapping",
     image: "assets/abdeen-palace.jpg",
+    video: "assets/abdeen-palace.mp4",
     specs: ["Historic Palace Facade Scan", "Sub-Millimeter Column & Window Calibration", "Live Orchestral Music Choreography", "Custom Computational 3D Illusions"],
     desc: "A monumental royal bridal entrance mapped onto the historic neoclassical facade of Abdeen Palace in Cairo. Custom computational 3D visual storytelling synchronized with live orchestral music, turning historic palace stone into a living, breathing spectacle."
   },
@@ -370,6 +375,7 @@ const projectData = {
     title: "BYD Global: Next-Gen EV Reveal & Anamorphic Visuals",
     category: "Automotive & Brand Activations",
     image: "assets/byd-hero.jpg",
+    video: "assets/byd-reveal.mp4",
     specs: ["Anamorphic 3D LED Screen Content", "Volumetric Vehicle Reveal Effects", "Photorealistic CGI Pre-Visualization", "High-Impact Kinetic Motion Design"],
     desc: "Next-generation electric vehicle reveal show engineered for BYD. High-impact 3D anamorphic depth illusions, photorealistic vehicle CGI simulations, and synchronized lighting choreography designed to dominate the room and social feeds."
   },
@@ -377,6 +383,7 @@ const projectData = {
     title: "Fossil: 3D Timepiece CGI Simulation & Launch Visuals",
     category: "Product CGI & Motion Design",
     image: "assets/fossil-hero.jpg",
+    video: "assets/fossil-watch.mp4",
     specs: ["Sub-Millimeter Metallic Texturing", "Macro Lighting & Material Physics", "Cinematic Commercial Animation", "Ultra-High Definition Screen Playback"],
     desc: "High-fidelity 3D timepiece simulation and cinematic commercial motion design created for Fossil. Featuring sub-millimeter metallic texturing, dynamic lighting reflections, and seamless looping visual effects."
   },
@@ -391,6 +398,7 @@ const projectData = {
     title: "Royal Weddings & Immersive Ballroom Transformations",
     category: "Weddings & Private Celebrations",
     image: "assets/wedding-luxury.jpg",
+    video: "assets/wedding-mapping.mp4",
     specs: ["360° Ballroom Venue Mapping", "Bridal Entrance Projection Sequences", "Bespoke Cake Projection Mapping", "Dreamlike Architectural Table-Scapes"],
     desc: "From complete ballroom transformations to bridal entrance visual journeys, cake mapping, and dreamlike table-scape visuals — we turn physical venues into enchanting, personalized environments that bring the couple's love story to life."
   }
@@ -403,7 +411,7 @@ function initProjectModal() {
 
   if (!modal) return;
 
-  const modalImg = document.getElementById('projectModalImg');
+  const modalMediaWrap = document.getElementById('projectModalMediaWrap');
   const modalCategory = document.getElementById('projectModalCategory');
   const modalTitle = document.getElementById('projectModalTitle');
   const modalDesc = document.getElementById('projectModalDesc');
@@ -413,7 +421,21 @@ function initProjectModal() {
     const data = projectData[id];
     if (!data) return;
 
-    modalImg.src = data.image;
+    if (modalMediaWrap) {
+      if (data.video) {
+        modalMediaWrap.innerHTML = `
+          <video controls autoplay playsinline controlslist="nodownload" style="width: 100%; height: 100%; object-fit: contain; background: #000;" poster="${data.image}">
+            <source src="${data.video}" type="video/mp4">
+            Your browser does not support HTML5 video playback.
+          </video>
+        `;
+      } else {
+        modalMediaWrap.innerHTML = `
+          <img src="${data.image}" alt="${data.title}" style="width: 100%; height: 100%; object-fit: cover;">
+        `;
+      }
+    }
+
     modalCategory.textContent = data.category;
     modalTitle.textContent = data.title;
     modalDesc.textContent = data.desc;
@@ -436,6 +458,11 @@ function initProjectModal() {
 
   function closeProject() {
     modal.classList.remove('open');
+    if (modalMediaWrap) {
+      const vid = modalMediaWrap.querySelector('video');
+      if (vid) vid.pause();
+      modalMediaWrap.innerHTML = '';
+    }
     document.body.style.overflow = '';
   }
 
