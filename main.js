@@ -325,8 +325,8 @@ function initVideoModal() {
 
   if (!modal || !frameContainer) return;
 
-  // Official Msquared showreel YouTube video ID: QvrO3Alz96U
-  const videoSrc = "https://www.youtube.com/embed/QvrO3Alz96U?autoplay=1&rel=0&modestbranding=1";
+  // Z99 Official 2026 Showreel YouTube Video ID: 6-HUUaqAr_Q
+  const videoSrc = "https://www.youtube.com/embed/6-HUUaqAr_Q?autoplay=1&rel=0&modestbranding=1";
 
   function openModal() {
     frameContainer.innerHTML = `<iframe src="${videoSrc}" title="Z99 Creative Studio Showreel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
