@@ -7,10 +7,8 @@ Thumbs.db
 
 # Large local media archives & staging
 YouTube-Uploads/
-Zyad Website/
-z9-20260907T082823Z-1-001/
+Raw-Media-Archive/
 references/
-SHOWREEL FINAL.mp4
 *.zip
 *.mp4
 !assets/*.mp4
