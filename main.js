@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initVideoModal();
   initProjectModal();
   initContactForm();
+  initMoodboardLightbox();
 });
 
 /* ==========================================================================
@@ -528,4 +529,73 @@ function initContactForm() {
       toast.classList.remove('show');
     }, 4500);
   }
+}
+
+/* ==========================================================================
+   9. MOODBOARD LIGHTBOX
+   ========================================================================== */
+function initMoodboardLightbox() {
+  const items = document.querySelectorAll('.moodboard-item');
+  if (items.length === 0) return;
+
+  // Create or get lightbox modal
+  let lightbox = document.getElementById('moodboardLightbox');
+  if (!lightbox) {
+    lightbox = document.createElement('div');
+    lightbox.id = 'moodboardLightbox';
+    lightbox.className = 'lightbox-modal';
+    lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
+    lightbox.innerHTML = `
+      <div class="lightbox-content">
+        <button class="lightbox-close-btn" id="closeLightboxBtn" aria-label="Close Lightbox">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <img src="" alt="Moodboard Full View" class="lightbox-img" id="lightboxImg">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    `;
+    document.body.appendChild(lightbox);
+  }
+
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const closeBtn = document.getElementById('closeLightboxBtn');
+
+  function openLightbox(src, caption) {
+    lightboxImg.src = src;
+    lightboxCaption.textContent = caption || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      const captionElem = item.querySelector('.moodboard-caption span');
+      if (img) {
+        openLightbox(img.src, captionElem ? captionElem.textContent : img.alt);
+      }
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+      closeLightbox();
+    }
+  });
 }
