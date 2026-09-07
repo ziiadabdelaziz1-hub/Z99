@@ -21,52 +21,86 @@
 
   <!-- Navigation Header -->
   <header class="header" id="mainHeader">
-    <div class="container header-container">
-      <a href="index.html" class="logo-link" aria-label="Z99 Creative Studio Home">
-        <img src="assets/z99-logo.png" alt="Z99 Creative Studio Logo" class="brand-logo-img">
+    <div class="container nav-container">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo-link" aria-label="Z99 Creative Studio Home">
+        <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img">
+        <span class="brand-logo-divider" aria-hidden="true"></span>
+        <span class="brand-logo-tagline">CREATIVE STUDIO</span>
       </a>
 
-      <nav class="nav-menu">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="index.html#about" class="nav-link">About Us</a>
-        <a href="projects.html" class="nav-link active">Projects</a>
-        <a href="index.html#showreel" class="nav-link">Showreel</a>
-        <a href="index.html#pipeline" class="nav-link">Pipeline</a>
-        <a href="index.html#regional-reach" class="nav-link">Regional Reach</a>
-        <a href="index.html#contact" class="nav-link">Contact</a>
+      <!-- Desktop Navigation Menu -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="index.html#about" class="nav-link">About Us</a></li>
+          <li class="nav-item dropdown">
+            <a href="projects.html" class="nav-link active">
+              Projects
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10l5 5 5-5z"/>
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="projects.html" class="dropdown-link">All Projects Catalog</a></li>
+              <li class="dropdown-item"><a href="project-abdeen.html" class="dropdown-link">Abdeen Palace Facade</a></li>
+              <li class="dropdown-item"><a href="project-byd.html" class="dropdown-link">BYD Automotive Reveal</a></li>
+              <li class="dropdown-item"><a href="project-fossil.html" class="dropdown-link">Fossil 3D Product CGI</a></li>
+              <li class="dropdown-item"><a href="project-concerts.html" class="dropdown-link">Concerts &amp; Live Stages</a></li>
+              <li class="dropdown-item"><a href="project-weddings.html" class="dropdown-link">Royal Weddings &amp; Galas</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="index.html#showreel" class="nav-link">Showreel</a></li>
+          <li class="nav-item"><a href="index.html#pipeline" class="nav-link">Pipeline</a></li>
+          <li class="nav-item"><a href="index.html#regional-reach" class="nav-link">Regional Reach</a></li>
+          <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
       </nav>
 
+      <!-- Header CTAs -->
       <div class="header-actions">
-        <a href="https://wa.me/201206049448" target="_blank" class="btn btn-primary nav-cta">Book Event</a>
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+        <a href="index.html#contact" class="btn btn-primary btn-sm">Book Event</a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Mobile Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
         </button>
       </div>
+
     </div>
   </header>
 
-  <!-- Mobile Navigation Drawer -->
+  <!-- Mobile Drawer -->
   <div class="drawer-backdrop" id="drawerBackdrop"></div>
   <aside class="mobile-drawer" id="mobileDrawer">
-    <div class="drawer-header">
-      <a href="index.html" class="drawer-logo">
-        <img src="assets/z99-logo.png" alt="Z99 Logo" style="height: 38px;">
-      </a>
-      <button class="drawer-close" id="drawerCloseBtn" aria-label="Close menu">&times;</button>
+    <div class="drawer-inner-top">
+      <div class="drawer-top-bar">
+        <a href="index.html" class="brand-logo-link" aria-label="Z99 Creative Studio Home">
+          <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img">
+          <span class="brand-logo-divider" aria-hidden="true"></span>
+          <span class="brand-logo-tagline">CREATIVE STUDIO</span>
+        </a>
+        <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Mobile Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="index.html#about" class="mobile-nav-link">About Us</a></li>
+        <li><a href="projects.html" class="mobile-nav-link active">Projects Catalog</a></li>
+        <li><a href="index.html#showreel" class="mobile-nav-link">2026 Showreel</a></li>
+        <li><a href="index.html#pipeline" class="mobile-nav-link">Production Pipeline</a></li>
+        <li><a href="index.html#regional-reach" class="mobile-nav-link">Regional Reach</a></li>
+        <li><a href="index.html#contact" class="mobile-nav-link">Contact Studio</a></li>
+      </ul>
     </div>
-    <nav class="mobile-nav-list">
-      <a href="index.html" class="mobile-nav-link">Home</a>
-      <a href="index.html#about" class="mobile-nav-link">About Us</a>
-      <a href="projects.html" class="mobile-nav-link active">Projects</a>
-      <a href="index.html#showreel" class="mobile-nav-link">Showreel</a>
-      <a href="index.html#pipeline" class="mobile-nav-link">Pipeline</a>
-      <a href="index.html#regional-reach" class="mobile-nav-link">Regional Reach</a>
-      <a href="index.html#contact" class="mobile-nav-link">Contact</a>
-    </nav>
-    <div class="drawer-footer">
-      <a href="https://wa.me/201206049448" target="_blank" class="btn btn-primary" style="width:100%; text-align:center;">Book Event via WhatsApp</a>
+    <div class="drawer-inner-bottom">
+      <a href="https://wa.me/201206049448" target="_blank" class="btn btn-primary" id="mobileDrawerCta" style="width: 100%;">Direct WhatsApp Booking</a>
+      <p style="margin-top: 16px; font-size: 0.78rem; color: var(--smoke-gray); text-align: center; letter-spacing: 0.05em;">z99creativestudio@gmail.com</p>
     </div>
   </aside>
 
