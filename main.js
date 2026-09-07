@@ -359,33 +359,40 @@ function initVideoModal() {
    7. PROJECT DETAILS MODAL
    ========================================================================== */
 const projectData = {
-  weddings: {
-    title: "Weddings: Immersive Venue Mapping",
-    category: "Weddings & Celebrations",
-    image: "assets/wedding.jpg",
-    specs: ["Venue Transformations", "Bridal Entrance Visuals", "Cake Projection Mapping", "Dreamlike Table-Scapes"],
-    desc: "From venue transformations and bridal entrance visuals to cake mapping and dreamlike table-scape visuals, we craft magical, personalized environments that bring the couple's story to life."
+  abdeen: {
+    title: "Abdeen Palace: Royal Bridal Entrance 3D Mapping",
+    category: "Monumental Architectural Mapping",
+    image: "assets/abdeen-palace.jpg",
+    specs: ["Historic Palace Facade Scan", "Sub-Millimeter Column & Window Calibration", "Live Orchestral Music Choreography", "Custom Computational 3D Illusions"],
+    desc: "A monumental royal bridal entrance mapped onto the historic neoclassical facade of Abdeen Palace in Cairo. Custom computational 3D visual storytelling synchronized with live orchestral music, turning historic palace stone into a living, breathing spectacle."
+  },
+  byd: {
+    title: "BYD Global: Next-Gen EV Reveal & Anamorphic Visuals",
+    category: "Automotive & Brand Activations",
+    image: "assets/byd-hero.jpg",
+    specs: ["Anamorphic 3D LED Screen Content", "Volumetric Vehicle Reveal Effects", "Photorealistic CGI Pre-Visualization", "High-Impact Kinetic Motion Design"],
+    desc: "Next-generation electric vehicle reveal show engineered for BYD. High-impact 3D anamorphic depth illusions, photorealistic vehicle CGI simulations, and synchronized lighting choreography designed to dominate the room and social feeds."
+  },
+  fossil: {
+    title: "Fossil: 3D Timepiece CGI Simulation & Launch Visuals",
+    category: "Product CGI & Motion Design",
+    image: "assets/fossil-hero.jpg",
+    specs: ["Sub-Millimeter Metallic Texturing", "Macro Lighting & Material Physics", "Cinematic Commercial Animation", "Ultra-High Definition Screen Playback"],
+    desc: "High-fidelity 3D timepiece simulation and cinematic commercial motion design created for Fossil. Featuring sub-millimeter metallic texturing, dynamic lighting reflections, and seamless looping visual effects."
   },
   concerts: {
-    title: "Parties & Concerts",
+    title: "Stadium Concerts & Live Festival Stages",
     category: "Concerts & Music Festivals",
-    image: "assets/concert.jpg",
-    specs: ["Pulsing Festival Stages", "Projection Mapping Rigs", "Audio-Reactive Visual Loops", "Crowd Euphoria Engineering"],
-    desc: "Pulsing festival stage visuals, projection mapping, and real-time audio-reactive visual loops engineered to amplify crowd euphoria."
+    image: "assets/concert-real.jpg",
+    specs: ["Pulsing Festival Stage Displays", "Audio-Reactive Real-Time Loops", "High-Lumen Projector Rigs", "Crowd Euphoria Visual Direction"],
+    desc: "Pulsing festival stage visuals, synchronized projection mapping, and real-time audio-reactive visual loops engineered to amplify crowd euphoria across major concerts and music festivals."
   },
-  keynote: {
-    title: "Events & Brand Experiences",
-    category: "Brand Experiences & Keynotes",
-    image: "assets/keynote.jpg",
-    specs: ["Product Launch Reveals", "Executive Conferences", "Anamorphic 3D LED Screens", "Feed-Dominating Show Design"],
-    desc: "From product launches to executive conferences, we bring events to life with reveal shows, projection mapping, and full-scale event visuals — anamorphic 3D LED screens and immersive show design engineered to dominate the room, and the feed."
-  },
-  facade: {
-    title: "Architectural 3D Projection Mapping",
-    category: "Architectural Projection Mapping",
-    image: "assets/facade.jpg",
-    specs: ["Building & Facade Mapping", "Historic Structure Projection", "360° Domes & Spheres", "Water-Screen Illusions"],
-    desc: "Bringing physical surfaces to life. We map buildings, historic structures, domes, and water screens with precision-calibrated projection — turning static structures into large-scale visual stories."
+  weddings: {
+    title: "Royal Weddings & Immersive Ballroom Transformations",
+    category: "Weddings & Private Celebrations",
+    image: "assets/wedding-luxury.jpg",
+    specs: ["360° Ballroom Venue Mapping", "Bridal Entrance Projection Sequences", "Bespoke Cake Projection Mapping", "Dreamlike Architectural Table-Scapes"],
+    desc: "From complete ballroom transformations to bridal entrance visual journeys, cake mapping, and dreamlike table-scape visuals — we turn physical venues into enchanting, personalized environments that bring the couple's love story to life."
   }
 };
 
@@ -461,14 +468,28 @@ function initContactForm() {
     e.preventDefault();
     const name = document.getElementById('formName').value.trim();
     const email = document.getElementById('formEmail').value.trim();
+    const service = document.getElementById('formService').value;
+    const message = document.getElementById('formMessage').value.trim();
 
     if (!name || !email) {
       showToast('Please fill in required fields');
       return;
     }
 
+    // Compose prefilled WhatsApp message for direct booking
+    const waText = encodeURIComponent(
+      `Hello Z99 Studio,\nMy name is ${name} (${email}).\nI am inquiring about: ${service.toUpperCase()}.\nProject details: ${message || 'Looking for project inquiry.'}`
+    );
+    const waUrl = `https://wa.me/201206049448?text=${waText}`;
+
     // Success feedback
-    showToast(`Thank you, ${name}! Your inquiry has been dispatched to Z99 Studio.`);
+    showToast(`Thank you, ${name}! Your inquiry has been sent to z99creativestudio@gmail.com.`);
+    
+    // Optionally open WhatsApp in a new tab to complete booking
+    setTimeout(() => {
+      window.open(waUrl, '_blank');
+    }, 1200);
+
     form.reset();
   });
 

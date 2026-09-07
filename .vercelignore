@@ -1,5 +1,11 @@
-Screenshot*.png
-Msquared - Home.html
-Msquared - Home_files/
-.git/
-node_modules/
+﻿.git
+.gitignore
+.github
+YouTube-Uploads
+Zyad Website
+z9-20260907T082823Z-1-001
+references
+SHOWREEL FINAL.mp4
+*.zip
+*.mp4
+!assets/*.mp4

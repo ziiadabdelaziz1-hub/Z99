@@ -1,5 +1,16 @@
-Screenshot*.png
-.tempmediaStorage/
+﻿# Environment & IDE
+.DS_Store
+Thumbs.db
 *.log
-concepts/
-logo-preview.html
+.vscode/
+.idea/
+
+# Large local media archives & staging
+YouTube-Uploads/
+Zyad Website/
+z9-20260907T082823Z-1-001/
+references/
+SHOWREEL FINAL.mp4
+*.zip
+*.mp4
+!assets/*.mp4

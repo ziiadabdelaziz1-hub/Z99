@@ -2109,3 +2109,206 @@ button, input, textarea {
   }
 }
 
+/* ==========================================================================
+   THE Z99 PRODUCTION PIPELINE & REGIONAL REACH
+   ========================================================================== */
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.pipeline-card {
+  background: var(--surface-card);
+  border: 1px solid var(--graphite);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--speed-normal) ease, border-color var(--speed-normal) ease, box-shadow var(--speed-normal) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pipeline-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--neon-lime), transparent);
+  opacity: 0;
+  transition: opacity var(--speed-normal) ease;
+}
+
+.pipeline-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(215, 255, 63, 0.4);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(215, 255, 63, 0.08);
+}
+
+.pipeline-card:hover::before {
+  opacity: 1;
+}
+
+.pipeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.pipeline-number {
+  font-family: var(--font-tech);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--neon-lime);
+  letter-spacing: -0.02em;
+}
+
+.pipeline-step-tag {
+  font-family: var(--font-tech);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--smoke-gray);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-transform: uppercase;
+}
+
+.pipeline-img-wrap {
+  width: 100%;
+  height: 170px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pipeline-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.pipeline-card:hover .pipeline-img {
+  transform: scale(1.06);
+}
+
+.pipeline-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--soft-white);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+
+.pipeline-text {
+  font-size: 0.92rem;
+  color: var(--smoke-gray);
+  line-height: 1.65;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.pipeline-punchline {
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  color: var(--soft-white);
+  padding: 10px 12px;
+  background: rgba(215, 255, 63, 0.04);
+  border-left: 2px solid var(--neon-lime);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  line-height: 1.45;
+}
+
+/* Regional Hubs Grid */
+.regional-hubs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.regional-hub-card {
+  background: rgba(18, 18, 18, 0.7);
+  border: 1px solid var(--graphite);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  backdrop-filter: blur(10px);
+  transition: border-color var(--speed-normal) ease, transform var(--speed-normal) ease;
+}
+
+.regional-hub-card:hover {
+  border-color: var(--neon-lime);
+  transform: translateY(-4px);
+}
+
+.hub-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.hub-status-badge {
+  font-family: var(--font-tech);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--neon-lime);
+  text-transform: uppercase;
+}
+
+.hub-country {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--soft-white);
+  letter-spacing: 0.04em;
+}
+
+.hub-title {
+  font-size: 1.05rem;
+  color: var(--soft-white);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.hub-desc {
+  font-size: 0.86rem;
+  color: var(--smoke-gray);
+  line-height: 1.6;
+}
+
+/* Responsive adjustments for Pipeline & Hubs */
+@media (max-width: 1024px) {
+  .pipeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .regional-hubs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .pipeline-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .regional-hubs-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pipeline-img-wrap {
+    height: 190px;
+  }
+}
+
