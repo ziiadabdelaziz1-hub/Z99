@@ -294,6 +294,18 @@ function initProjectFilter() {
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+      const isAlreadyActive = btn.classList.contains('active');
+
+      if (isAlreadyActive) {
+        btn.classList.remove('active');
+        cards.forEach(card => {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1)';
+        });
+        return;
+      }
+
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
@@ -328,10 +340,7 @@ function initVideoModal() {
 
   function openModal() {
     frameContainer.innerHTML = `
-      <video controls autoplay playsinline controlslist="nodownload" poster="assets/abdeen-palace.jpg">
-        <source src="assets/z99-showreel.mp4" type="video/mp4">
-        Your browser does not support HTML5 video playback.
-      </video>
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/6-HUUaqAr_Q?autoplay=1&rel=0&modestbranding=1" title="Z99 Creative Studio Showreel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
     `;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -339,8 +348,6 @@ function initVideoModal() {
 
   function closeModal() {
     modal.classList.remove('open');
-    const vid = frameContainer.querySelector('video');
-    if (vid) vid.pause();
     frameContainer.innerHTML = '';
     document.body.style.overflow = '';
   }

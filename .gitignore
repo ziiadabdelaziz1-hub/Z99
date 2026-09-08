@@ -1,4 +1,4 @@
-﻿# Environment & IDE
+# Environment & IDE
 .DS_Store
 Thumbs.db
 *.log
@@ -12,3 +12,4 @@ references/
 *.zip
 *.mp4
 !assets/*.mp4
+assets/pipeline-backup/
