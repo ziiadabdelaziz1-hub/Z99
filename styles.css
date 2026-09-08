@@ -1094,6 +1094,7 @@ button, input, textarea {
 .projects-filter-bar {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
   margin-bottom: 40px;
@@ -1227,28 +1228,38 @@ button, input, textarea {
 
 .card-action {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 12px;
   border-top: 1px solid var(--graphite);
   padding-top: 18px;
+  margin-top: auto;
+}
+
+.card-tech-tags {
+  font-family: var(--font-tech);
+  font-size: 0.76rem;
+  color: var(--smoke-gray);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
 }
 
 .explore-link {
-  font-family: var(--font-body);
+  font-family: var(--font-tech);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--neon-lime);
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: gap var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .explore-link:hover {
   gap: 14px;
-  color: var(--electric-lime);
+  color: var(--soft-white);
 }
 
 /* ==========================================================================
@@ -1929,10 +1940,11 @@ button, input, textarea {
   /* Bento Grid Mobile */
   .projects-filter-bar {
     display: flex;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
     margin-bottom: 24px;
     gap: 8px;
     scrollbar-width: none;
@@ -2404,6 +2416,7 @@ button, input, textarea {
 .cinema-video-wrapper {
   position: relative;
   width: 100%;
+  aspect-ratio: 16 / 9;
   border-radius: var(--radius-md);
   overflow: hidden;
   background: #000;
@@ -2414,11 +2427,22 @@ button, input, textarea {
 
 .cinema-video-wrapper video {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
-  max-height: 780px;
+  object-fit: cover;
   background: #000;
   outline: none;
+}
+
+.cinema-video-wrapper.square-video {
+  aspect-ratio: 1 / 1;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.case-study-content-section {
+  padding: 50px 0 80px;
 }
 
 /* Case Study Content Grid */
