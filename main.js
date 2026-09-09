@@ -292,12 +292,22 @@ function initProjectFilter() {
 
   if (filterBtns.length === 0 || cards.length === 0) return;
 
+  const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const isAlreadyActive = btn.classList.contains('active');
+      const filter = btn.getAttribute('data-filter');
 
+      // If clicking already active 'all' button, maintain all active
+      if (isAlreadyActive && filter === 'all') {
+        return;
+      }
+
+      // If deselecting a specific active category, revert back to all
       if (isAlreadyActive) {
         btn.classList.remove('active');
+        if (allBtn) allBtn.classList.add('active');
         cards.forEach(card => {
           card.style.display = 'flex';
           card.style.opacity = '1';
@@ -308,8 +318,6 @@ function initProjectFilter() {
 
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      const filter = btn.getAttribute('data-filter');
 
       cards.forEach(card => {
         const category = card.getAttribute('data-category');
@@ -561,6 +569,16 @@ function initMoodboardLightbox() {
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
+        <button class="lightbox-nav-btn lightbox-prev-btn" id="prevLightboxBtn" aria-label="Previous Image">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="lightbox-nav-btn lightbox-next-btn" id="nextLightboxBtn" aria-label="Next Image">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
         <img src="" alt="Moodboard Full View" class="lightbox-img" id="lightboxImg">
         <div class="lightbox-caption" id="lightboxCaption"></div>
       </div>
@@ -571,10 +589,39 @@ function initMoodboardLightbox() {
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxCaption = document.getElementById('lightboxCaption');
   const closeBtn = document.getElementById('closeLightboxBtn');
+  const prevBtn = document.getElementById('prevLightboxBtn');
+  const nextBtn = document.getElementById('nextLightboxBtn');
 
-  function openLightbox(src, caption) {
-    lightboxImg.src = src;
-    lightboxCaption.textContent = caption || '';
+  // Collect images and data
+  const images = [];
+  items.forEach((item, idx) => {
+    const img = item.querySelector('img');
+    const captionElem = item.querySelector('.moodboard-caption span');
+    if (img) {
+      images.push({
+        src: img.src,
+        caption: captionElem ? captionElem.textContent : (img.alt || '')
+      });
+      item.dataset.lightboxIndex = idx;
+    }
+  });
+
+  if (images.length <= 1) {
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+  }
+
+  let currentIndex = 0;
+
+  function updateImage(index) {
+    if (images.length === 0) return;
+    currentIndex = (index + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+    lightboxCaption.textContent = images[currentIndex].caption || '';
+  }
+
+  function openLightbox(index) {
+    updateImage(index);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -585,24 +632,49 @@ function initMoodboardLightbox() {
     document.body.style.overflow = '';
   }
 
+  function showNext() {
+    updateImage(currentIndex + 1);
+  }
+
+  function showPrev() {
+    updateImage(currentIndex - 1);
+  }
+
   items.forEach(item => {
     item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const captionElem = item.querySelector('.moodboard-caption span');
-      if (img) {
-        openLightbox(img.src, captionElem ? captionElem.textContent : img.alt);
+      const idx = parseInt(item.dataset.lightboxIndex, 10);
+      if (!isNaN(idx)) {
+        openLightbox(idx);
       }
     });
   });
 
   if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showPrev();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showNext();
+    });
+  }
+
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
   });
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') {
       closeLightbox();
+    } else if (e.key === 'ArrowLeft') {
+      showPrev();
+    } else if (e.key === 'ArrowRight') {
+      showNext();
     }
   });
 }

@@ -33,8 +33,7 @@
       <!-- Desktop Navigation Menu -->
       <nav class="desktop-nav" aria-label="Main Navigation">
         <ul class="nav-menu">
-          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="index.html#about" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
           <li class="nav-item dropdown">
             <a href="projects.html" class="nav-link active">
               Projects
@@ -52,7 +51,6 @@
           </li>
           <li class="nav-item"><a href="index.html#showreel" class="nav-link">Showreel</a></li>
           <li class="nav-item"><a href="index.html#pipeline" class="nav-link">Pipeline</a></li>
-          <li class="nav-item"><a href="index.html#regional-reach" class="nav-link">Regional Reach</a></li>
           <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -127,6 +125,7 @@
         
         <!-- Filter Controls (4 Core Pillars) -->
         <div class="projects-filter-bar">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
           <button class="filter-btn" data-filter="mapping">3D Projection Mapping</button>
           <button class="filter-btn" data-filter="corporate">Brand Activations</button>
           <button class="filter-btn" data-filter="concerts">Concerts &amp; Festivals</button>
@@ -136,10 +135,9 @@
         <div class="bento-grid">
           
           <!-- Project 1: Abdeen Palace -->
-          <article class="bento-card col-4" data-category="mapping">
+          <a href="project-abdeen.html?v=6" class="bento-card col-4" data-category="mapping" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Monumental Facade Mapping</span>
-              <img src="assets/abdeen-palace.jpg" alt="Abdeen Palace 3D Projection Mapping" class="card-img">
+              <img src="assets/abdeen-palace.jpg" alt="Abdeen Palace 3D Projection Mapping" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
               <div>
@@ -148,18 +146,16 @@
                   Monumental 3D projection mapping onto the historic neoclassical facade of Abdeen Palace in Cairo. Custom computational architectural visuals synchronized with a live orchestral bridal entrance.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">PALACE FACADE • ORCHESTRAL SYNC • 3D PRE-VIS</span>
-                <a href="project-abdeen.html?v=6" class="explore-link">View Case Study &amp; Moodboard &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Moodboard &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Project 2: BYD Global -->
-          <article class="bento-card col-4" data-category="corporate">
+          <a href="project-byd.html?v=6" class="bento-card col-4" data-category="corporate" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Automotive Reveal</span>
-              <img src="assets/byd-hero.jpg" alt="BYD Automotive 3D Reveal" class="card-img">
+              <img src="assets/byd-hero.jpg" alt="BYD Automotive 3D Reveal" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
               <div>
@@ -168,18 +164,16 @@
                   Next-generation vehicle reveal show visuals and commercial campaign engineered for BYD. High-impact 3D anamorphic depth illusions and photorealistic CGI animations.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">ANAMORPHIC 3D • CGI CAR SIMULATION</span>
-                <a href="project-byd.html?v=6" class="explore-link">View Case Study &amp; Moodboard &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Moodboard &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Project 3: Fossil Watches -->
-          <article class="bento-card col-4" data-category="corporate">
+          <a href="project-fossil.html?v=6" class="bento-card col-4" data-category="corporate" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Product CGI Animation</span>
-              <img src="assets/fossil-hero.jpg" alt="Fossil 3D Product CGI Simulation" class="card-img">
+              <img src="assets/fossil-hero.jpg" alt="Fossil 3D Product CGI Simulation" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
               <div>
@@ -188,17 +182,15 @@
                   Photorealistic 3D timepiece simulation and cinematic commercial motion design. Precision metallic texturing, macro lighting, and looping show visuals.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">MACRO CGI • TIMEPIECE SIMULATION</span>
-                <a href="project-fossil.html?v=6" class="explore-link">View Case Study &amp; Moodboard &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Moodboard &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Project: Concert 01 -->
-          <article class="bento-card col-4" data-category="concerts">
+          <a href="project-concert-1.html?v=6" class="bento-card col-4" data-category="concerts" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Stadium Stage Visuals</span>
               <img src="assets/projects/concert-1/1.webp" alt="Concert 01 Arena Stage Visual Production" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
@@ -208,17 +200,15 @@
                   High-octane stadium stage production: generative real-time Notch shaders, multi-layer transparent LED depth, and SMPTE lighting sync.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">STADIUM RIG • REAL-TIME SHADERS • 18 STILLS</span>
-                <a href="project-concert-1.html?v=6" class="explore-link">View Case Study &amp; Gallery &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Gallery &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Wedding 01 -->
-          <article class="bento-card col-4" data-category="weddings">
+          <a href="project-wedding-1.html?v=6" class="bento-card col-4" data-category="weddings" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Luxury Weddings</span>
               <img src="assets/projects/wedding-1/1.webp" alt="Royal Wedding 01 Ballroom Mapping" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
@@ -228,17 +218,15 @@
                   Monumental classical arch calibration, shifting gold filigree, and a starlit cosmic canopy for the bridal procession.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">GOLD FILIGREE • DOME CANOPY • 10 STILLS</span>
-                <a href="project-wedding-1.html?v=6" class="explore-link">View Case Study &amp; Gallery &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Gallery &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Wedding 02 -->
-          <article class="bento-card col-4" data-category="weddings">
+          <a href="project-wedding-2.html?v=6" class="bento-card col-4" data-category="weddings" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Luxury Weddings</span>
               <img src="assets/projects/wedding-2/1.webp" alt="Royal Wedding 02 Botanical Mapping" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
@@ -248,17 +236,15 @@
                   Transforming an interior hall into an ethereal nocturnal flora sanctuary with organic blooms and interactive petal tracks.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">BOTANICAL MAPPING • FLORAL SHADERS • 12 STILLS</span>
-                <a href="project-wedding-2.html?v=6" class="explore-link">View Case Study &amp; Gallery &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Gallery &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Wedding 03 -->
-          <article class="bento-card col-4" data-category="weddings">
+          <a href="project-wedding-3.html?v=6" class="bento-card col-4" data-category="weddings" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Luxury Weddings</span>
               <img src="assets/projects/wedding-3/1.webp" alt="Royal Wedding 03 Crystalline Splendor" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
@@ -268,17 +254,15 @@
                   Baroque architectural symmetry meets futuristic crystal refraction with living Carrera marble relief and dual staircase mapping.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">BAROQUE RELIEF • CRYSTAL PRISMS • 10 STILLS</span>
-                <a href="project-wedding-3.html?v=6" class="explore-link">View Case Study &amp; Gallery &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Gallery &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Wedding 04 -->
-          <article class="bento-card col-4" data-category="weddings">
+          <a href="project-wedding-4.html?v=6" class="bento-card col-4" data-category="weddings" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Luxury Weddings</span>
               <img src="assets/projects/wedding-4/2.webp" alt="Royal Wedding 04 Modernist Illusions" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
@@ -288,18 +272,16 @@
                   Expansive optical depth illusions, volumetric spatial shifts, and an amber gradient atmosphere synchronized with kinetic lighting.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">DEPTH ILLUSIONS • KINETIC SYNC • 10 STILLS</span>
-                <a href="project-wedding-4.html?v=6" class="explore-link">View Case Study &amp; Gallery &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Gallery &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Wedding 05 -->
-          <article class="bento-card col-4" data-category="weddings">
+          <a href="project-wedding-5.html?v=6" class="bento-card col-4" data-category="weddings" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Luxury Weddings</span>
-              <img src="assets/projects/wedding-5/1.webp" alt="Royal Wedding 05 Emerald & Gold" class="card-img" loading="lazy">
+              <img src="assets/projects/wedding-5/1.webp" alt="Royal Wedding 05 Emerald &amp; Gold" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
               <div>
@@ -308,17 +290,15 @@
                   Sumptuous regal grandeur: deep emerald velvets simulated on monumental planes, molten gold Arabic calligraphy, and cake mapping.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">GOLD CALLIGRAPHY • VELVET SHADERS • 10 STILLS</span>
-                <a href="project-wedding-5.html?v=6" class="explore-link">View Case Study &amp; Gallery &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Gallery &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Wedding 06 -->
-          <article class="bento-card col-4" data-category="weddings">
+          <a href="project-wedding-6.html?v=6" class="bento-card col-4" data-category="weddings" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Luxury Weddings</span>
               <img src="assets/projects/wedding-6/1.webp" alt="Royal Wedding 06 Floating Dreamscape" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
@@ -328,17 +308,15 @@
                   Dissolving ballroom boundaries into celestial atmospheres: drifting cloud formations, champagne light glow, and bridal entrance reveal.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">270° CURVATURE • CLOUD MAPPING • 16 STILLS</span>
-                <a href="project-wedding-6.html?v=6" class="explore-link">View Case Study &amp; Gallery &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Gallery &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Wedding 07 -->
-          <article class="bento-card col-4" data-category="weddings">
+          <a href="project-wedding-7.html?v=6" class="bento-card col-4" data-category="weddings" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Luxury Weddings</span>
               <img src="assets/projects/wedding-7/1.webp" alt="Royal Wedding 07 Baroque Illuminations" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
@@ -348,17 +326,15 @@
                   Classical monarchical gala homage: projecting authentic architectural trompe-l'œil, gilded cornices, and dynamic candlelight flicker.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">TROMPE-L'ŒIL • GILDED PLASTER • 12 STILLS</span>
-                <a href="project-wedding-7.html?v=6" class="explore-link">View Case Study &amp; Gallery &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Gallery &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
           <!-- Wedding 08 -->
-          <article class="bento-card col-4" data-category="weddings">
+          <a href="project-wedding-8.html?v=6" class="bento-card col-4" data-category="weddings" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
             <div class="card-media-wrapper">
-              <span class="card-badge">Luxury Weddings</span>
               <img src="assets/projects/wedding-8/1.webp" alt="Royal Wedding 08 Grand Panoramic" class="card-img" loading="lazy">
             </div>
             <div class="card-body">
@@ -368,12 +344,11 @@
                   A multi-act celebration over 200 linear meters of perimeter walls, transitioning from romantic twilight sapphire to virtual midnight fireworks.
                 </p>
               </div>
-              <div class="card-action">
-                <span class="card-tech-tags">FOUR-WALL PANORAMA • INDOOR FIREWORKS • 18 STILLS</span>
-                <a href="project-wedding-8.html?v=6" class="explore-link">View Case Study &amp; Gallery &rarr;</a>
+              <div class="card-action" style="justify-content: flex-end;">
+                <span class="explore-link">View Case Study &amp; Gallery &rarr;</span>
               </div>
             </div>
-          </article>
+          </a>
 
         </div>
       </div>
