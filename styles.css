@@ -2826,7 +2826,8 @@ button, input, textarea {
 .case-category-pills {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -2834,17 +2835,18 @@ button, input, textarea {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
+  padding: 8px 16px;
   background: var(--surface-card);
   border: 1px solid var(--graphite);
   border-radius: var(--radius-pill);
   font-family: var(--font-tech);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--smoke-gray);
   text-decoration: none;
+  white-space: nowrap;
   transition: all var(--transition-fast);
 }
 
