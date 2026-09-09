@@ -402,6 +402,22 @@ button, input, textarea {
   transform: translateY(-2px);
 }
 
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--soft-white);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--neon-lime);
+  color: var(--neon-lime);
+  box-shadow: 0 0 20px rgba(215, 255, 63, 0.2);
+  transform: translateY(-2px);
+}
+
 .btn-outline {
   background: transparent;
   color: var(--soft-white);
@@ -2848,6 +2864,40 @@ button, input, textarea {
   align-items: center;
   gap: 14px;
   flex-shrink: 0;
+}
+
+.case-stream-actions .btn {
+  white-space: nowrap;
+  padding: 10px 24px;
+  font-size: 0.8rem;
+}
+
+.case-stream-actions .btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #FFFFFF;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all var(--transition-smooth);
+}
+
+.case-stream-actions .btn-secondary:hover {
+  background: rgba(215, 255, 63, 0.12);
+  border-color: var(--neon-lime);
+  color: var(--neon-lime);
+  box-shadow: 0 0 20px rgba(215, 255, 63, 0.3);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 860px) {
