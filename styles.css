@@ -2732,32 +2732,135 @@ button, input, textarea {
   border-color: var(--neon-lime);
 }
 
-/* Bottom Case Study Navigation Bar */
+/* ==========================================================================
+   IN-CATEGORY STREAM NAVIGATION & CATEGORY SWITCHER (MSQUARED FLOW)
+   ========================================================================== */
 .case-bottom-nav {
-  padding: 40px 0;
+  margin-top: 60px;
+  padding: 50px 0 20px;
   border-top: 1px solid var(--graphite);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  gap: 32px;
 }
 
-.case-nav-btn {
+.case-category-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.case-switcher-label {
+  font-family: var(--font-tech);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  color: var(--smoke-gray);
+  text-transform: uppercase;
+}
+
+.case-category-pills {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--soft-white);
-  text-decoration: none;
-  font-family: var(--font-tech);
-  font-size: 0.88rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: color var(--transition-fast);
+  flex-wrap: wrap;
 }
 
-.case-nav-btn:hover {
+.case-cat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--surface-card);
+  border: 1px solid var(--graphite);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-tech);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--smoke-gray);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.case-cat-pill:hover {
+  color: var(--soft-white);
+  border-color: var(--smoke-gray);
+}
+
+.case-cat-pill.active {
+  background: var(--neon-lime);
+  color: var(--void-black);
+  border-color: var(--neon-lime);
+  box-shadow: 0 0 15px var(--lime-glow);
+}
+
+.case-stream-card {
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+  border: 1px solid var(--graphite);
+  border-radius: var(--radius-lg);
+  padding: 30px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  transition: all var(--transition-smooth);
+}
+
+.case-stream-card:hover {
+  border-color: rgba(215, 255, 63, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--lime-faint);
+}
+
+.case-stream-info {
+  max-width: 620px;
+}
+
+.case-stream-badge {
+  display: inline-block;
+  font-family: var(--font-tech);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
   color: var(--neon-lime);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.case-stream-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--soft-white);
+  margin-bottom: 8px;
+}
+
+.case-stream-desc {
+  font-size: 0.86rem;
+  color: var(--smoke-gray);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.case-stream-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 860px) {
+  .case-stream-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px;
+  }
+  .case-stream-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 /* Responsive adjustments for Case Study */
