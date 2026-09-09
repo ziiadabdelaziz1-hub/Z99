@@ -700,12 +700,9 @@ button, input, textarea {
 }
 
 .hero-scroll-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
+  position: relative;
+  margin-top: 48px;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
@@ -714,6 +711,20 @@ button, input, textarea {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   font-family: var(--font-tech);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.hero-scroll-indicator:hover {
+  color: var(--neon-lime);
+  transform: translateY(3px);
+}
+
+.hero-scroll-indicator:hover .scroll-mouse {
+  border-color: var(--neon-lime);
+  box-shadow: 0 0 15px var(--lime-glow);
 }
 
 .scroll-mouse {
