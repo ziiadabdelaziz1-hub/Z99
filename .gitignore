@@ -13,3 +13,5 @@ references/
 *.mp4
 !assets/*.mp4
 assets/pipeline-backup/
+z9-*/
+z9-*
