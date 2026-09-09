@@ -280,6 +280,20 @@ function initCarousel() {
     startAutoplay();
   }
 
+  // Keyboard navigation for carousel
+  document.addEventListener('keydown', (e) => {
+    const isModalOpen = document.querySelector('.modal-backdrop.open') || document.querySelector('.lightbox-modal.open');
+    if (isModalOpen) return;
+
+    if (e.key === 'ArrowLeft') {
+      prevSlide();
+      resetAutoplay();
+    } else if (e.key === 'ArrowRight') {
+      nextSlide();
+      resetAutoplay();
+    }
+  });
+
   startAutoplay();
 }
 
@@ -561,30 +575,32 @@ function initMoodboardLightbox() {
     lightbox.className = 'lightbox-modal';
     lightbox.setAttribute('role', 'dialog');
     lightbox.setAttribute('aria-modal', 'true');
-    lightbox.innerHTML = `
-      <div class="lightbox-content">
-        <button class="lightbox-close-btn" id="closeLightboxBtn" aria-label="Close Lightbox">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-        <button class="lightbox-nav-btn lightbox-prev-btn" id="prevLightboxBtn" aria-label="Previous Image">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-        <button class="lightbox-nav-btn lightbox-next-btn" id="nextLightboxBtn" aria-label="Next Image">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-        <img src="" alt="Moodboard Full View" class="lightbox-img" id="lightboxImg">
-        <div class="lightbox-caption" id="lightboxCaption"></div>
-      </div>
-    `;
     document.body.appendChild(lightbox);
   }
+
+  // Always refresh markup to ensure navigation buttons exist
+  lightbox.innerHTML = `
+    <button class="lightbox-close-btn" id="closeLightboxBtn" aria-label="Close Lightbox">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <button class="lightbox-nav-btn lightbox-prev-btn" id="prevLightboxBtn" aria-label="Previous Image">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="lightbox-nav-btn lightbox-next-btn" id="nextLightboxBtn" aria-label="Next Image">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+    <div class="lightbox-content">
+      <img src="" alt="Moodboard Full View" class="lightbox-img" id="lightboxImg">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  `;
 
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxCaption = document.getElementById('lightboxCaption');
@@ -596,11 +612,11 @@ function initMoodboardLightbox() {
   const images = [];
   items.forEach((item, idx) => {
     const img = item.querySelector('img');
-    const captionElem = item.querySelector('.moodboard-caption span');
+    const captionElem = item.querySelector('.moodboard-caption span') || item.querySelector('.moodboard-item-title');
     if (img) {
       images.push({
         src: img.src,
-        caption: captionElem ? captionElem.textContent : (img.alt || '')
+        caption: captionElem ? captionElem.textContent.trim() : (img.alt || '')
       });
       item.dataset.lightboxIndex = idx;
     }
@@ -649,13 +665,20 @@ function initMoodboardLightbox() {
     });
   });
 
-  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+  }
+
   if (prevBtn) {
     prevBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       showPrev();
     });
   }
+
   if (nextBtn) {
     nextBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -667,13 +690,16 @@ function initMoodboardLightbox() {
     if (e.target === lightbox) closeLightbox();
   });
 
-  window.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('open')) return;
     if (e.key === 'Escape') {
+      e.preventDefault();
       closeLightbox();
     } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
       showPrev();
     } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
       showNext();
     }
   });
