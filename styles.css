@@ -3069,3 +3069,128 @@ button, input, textarea {
     margin-bottom: 36px;
   }
 }
+
+/* ==========================================================================
+   CUSTOM INTERACTIVE CURSOR
+   ========================================================================== */
+@media (hover: hover) and (pointer: fine) {
+  html, body, a, button, select, [role="button"] {
+    cursor: none !important;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 999999;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+    transform: translate3d(-100px, -100px, 0);
+  }
+
+  .cursor-dot {
+    width: 7px;
+    height: 7px;
+    background-color: var(--acid, #d7ff3f);
+    box-shadow: 0 0 10px var(--acid, #d7ff3f), 0 0 18px rgba(215, 255, 63, 0.6);
+    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+    transition: opacity 0.25s ease, width 0.2s ease, height 0.2s ease;
+  }
+
+  .cursor-ring {
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid rgba(215, 255, 63, 0.45);
+    background: rgba(215, 255, 63, 0.03);
+    box-shadow: 0 0 14px rgba(215, 255, 63, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+    transition: opacity 0.3s ease,
+                width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                background-color 0.25s ease,
+                box-shadow 0.25s ease;
+  }
+
+  .cursor-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--acid, #d7ff3f);
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .cursor-dot.active,
+  .cursor-ring.active {
+    opacity: 1;
+  }
+
+  /* Hover over interactive link/button */
+  .cursor-ring.is-hovered {
+    width: 52px;
+    height: 52px;
+    border-color: var(--acid, #d7ff3f);
+    background: rgba(215, 255, 63, 0.08);
+    box-shadow: 0 0 22px rgba(215, 255, 63, 0.25);
+  }
+
+  .cursor-dot.is-hovered {
+    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(0.5);
+    opacity: 0.7;
+  }
+
+  /* Hover over media / project cards ("VIEW" / "ZOOM" / "PLAY" mode) */
+  .cursor-ring.is-media {
+    width: 74px;
+    height: 74px;
+    border-color: var(--acid, #d7ff3f);
+    background: rgba(5, 5, 5, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 0 24px rgba(215, 255, 63, 0.35);
+  }
+
+  .cursor-ring.is-media .cursor-label {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .cursor-dot.is-media {
+    opacity: 0;
+  }
+
+  /* Active click state (pinch) */
+  .cursor-ring.is-clicked {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .cursor-dot.is-clicked {
+    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(1.4);
+  }
+
+  /* Text Input focus */
+  .cursor-ring.is-input {
+    width: 20px;
+    height: 20px;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: transparent;
+    opacity: 0.4;
+  }
+
+  .cursor-dot.is-input {
+    opacity: 0;
+  }
+}

@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initVideoModal();
   initContactForm();
   initMoodboardLightbox();
+  initCustomCursor();
 });
 
 /* ==========================================================================
@@ -579,6 +580,156 @@ function initMoodboardLightbox() {
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
       showNext();
+    }
+  });
+}
+
+/* ==========================================================================
+   9. BESPOKE STUDIO CURSOR (Fluid Inertia & Micro-Interactions)
+   ========================================================================== */
+function initCustomCursor() {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (document.getElementById('cursorDot')) return;
+
+  const dot = document.createElement('div');
+  dot.id = 'cursorDot';
+  dot.className = 'cursor-dot';
+
+  const ring = document.createElement('div');
+  ring.id = 'cursorRing';
+  ring.className = 'cursor-ring';
+
+  const label = document.createElement('span');
+  label.id = 'cursorLabel';
+  label.className = 'cursor-label';
+  label.textContent = 'VIEW';
+  ring.appendChild(label);
+
+  document.body.appendChild(dot);
+  document.body.appendChild(ring);
+
+  let mouseX = -100;
+  let mouseY = -100;
+  let ringX = -100;
+  let ringY = -100;
+  let isVisible = false;
+  let isClicked = false;
+  let rafId = null;
+
+  function render() {
+    if (isVisible) {
+      const lerp = 0.18;
+      ringX += (mouseX - ringX) * lerp;
+      ringY += (mouseY - ringY) * lerp;
+
+      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) ${isClicked ? 'scale(0.85)' : ''}`;
+    }
+    rafId = requestAnimationFrame(render);
+  }
+  rafId = requestAnimationFrame(render);
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    if (!isVisible) {
+      isVisible = true;
+      ringX = mouseX;
+      ringY = mouseY;
+      dot.classList.add('active');
+      ring.classList.add('active');
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => {
+    isVisible = false;
+    dot.classList.remove('active');
+    ring.classList.remove('active');
+  });
+
+  document.addEventListener('mouseenter', () => {
+    isVisible = true;
+    dot.classList.add('active');
+    ring.classList.add('active');
+  });
+
+  window.addEventListener('mousedown', () => {
+    isClicked = true;
+    ring.classList.add('is-clicked');
+    dot.classList.add('is-clicked');
+  });
+
+  window.addEventListener('mouseup', () => {
+    isClicked = false;
+    ring.classList.remove('is-clicked');
+    dot.classList.remove('is-clicked');
+  });
+
+  document.addEventListener('mouseover', (e) => {
+    const target = e.target;
+    if (!target) return;
+
+    // 1. Media & Project Cards
+    const mediaTarget = target.closest('.bento-card, .moodboard-item, .cinema-video-wrapper, .media-zoomable, .card-media-wrapper, .about-visual-frame');
+    if (mediaTarget) {
+      if (mediaTarget.closest('.moodboard-grid') || mediaTarget.classList.contains('media-zoomable')) {
+        label.textContent = 'ZOOM';
+      } else if (mediaTarget.classList.contains('cinema-video-wrapper')) {
+        label.textContent = 'PLAY';
+      } else {
+        label.textContent = 'VIEW';
+      }
+      ring.classList.add('is-media');
+      dot.classList.add('is-media');
+      return;
+    }
+
+    // 2. Form Inputs
+    const inputTarget = target.closest('input, textarea, select');
+    if (inputTarget) {
+      ring.classList.add('is-input');
+      dot.classList.add('is-input');
+      return;
+    }
+
+    // 3. Interactive Buttons, Links & Navigation Pills
+    const linkTarget = target.closest('a, button, .btn, .case-cat-pill, .carousel-btn, .filter-btn, [role="button"], label, .lightbox-arrow, .lightbox-close, .nav-link, .brand-logo-link');
+    if (linkTarget) {
+      ring.classList.add('is-hovered');
+      dot.classList.add('is-hovered');
+      return;
+    }
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    const target = e.target;
+    if (!target) return;
+
+    const mediaTarget = target.closest('.bento-card, .moodboard-item, .cinema-video-wrapper, .media-zoomable, .card-media-wrapper, .about-visual-frame');
+    if (mediaTarget) {
+      ring.classList.remove('is-media');
+      dot.classList.remove('is-media');
+    }
+
+    const inputTarget = target.closest('input, textarea, select');
+    if (inputTarget) {
+      ring.classList.remove('is-input');
+      dot.classList.remove('is-input');
+    }
+
+    const linkTarget = target.closest('a, button, .btn, .case-cat-pill, .carousel-btn, .filter-btn, [role="button"], label, .lightbox-arrow, .lightbox-close, .nav-link, .brand-logo-link');
+    if (linkTarget) {
+      ring.classList.remove('is-hovered');
+      dot.classList.remove('is-hovered');
+    }
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (rafId) cancelAnimationFrame(rafId);
+    } else {
+      rafId = requestAnimationFrame(render);
     }
   });
 }
