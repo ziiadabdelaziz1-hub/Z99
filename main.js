@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initMoodboardLightbox();
   initCustomCursor();
+  initCustomSelect();
 });
 
 /* ==========================================================================
@@ -731,5 +732,97 @@ function initCustomCursor() {
     } else {
       rafId = requestAnimationFrame(render);
     }
+  });
+}
+
+/* ==========================================================================
+   10. CUSTOM BRAND SELECT DROPDOWN (Acid Lime Highlight)
+   ========================================================================== */
+function initCustomSelect() {
+  const selects = document.querySelectorAll('.form-select');
+  selects.forEach((select) => {
+    if (select.dataset.customized === 'true') return;
+    select.dataset.customized = 'true';
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'custom-select-wrapper';
+
+    const trigger = document.createElement('div');
+    trigger.className = 'custom-select-trigger';
+    
+    const selectedOption = select.options[select.selectedIndex] || select.options[0];
+    const triggerText = document.createElement('span');
+    triggerText.className = 'custom-select-text';
+    triggerText.textContent = selectedOption ? selectedOption.textContent : '';
+
+    const arrow = document.createElement('div');
+    arrow.className = 'custom-select-arrow';
+    arrow.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+
+    trigger.appendChild(triggerText);
+    trigger.appendChild(arrow);
+
+    const optionsContainer = document.createElement('div');
+    optionsContainer.className = 'custom-select-options';
+
+    Array.from(select.options).forEach((opt, idx) => {
+      const optionElem = document.createElement('div');
+      optionElem.className = 'custom-option';
+      if (idx === select.selectedIndex) {
+        optionElem.classList.add('selected');
+      }
+      optionElem.textContent = opt.textContent;
+      optionElem.dataset.value = opt.value;
+
+      optionElem.addEventListener('click', (e) => {
+        e.stopPropagation();
+        select.value = opt.value;
+        triggerText.textContent = opt.textContent;
+
+        optionsContainer.querySelectorAll('.custom-option').forEach(el => el.classList.remove('selected'));
+        optionElem.classList.add('selected');
+
+        wrapper.classList.remove('open');
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+
+      optionsContainer.appendChild(optionElem);
+    });
+
+    select.style.display = 'none';
+
+    select.parentNode.insertBefore(wrapper, select);
+    wrapper.appendChild(select);
+    wrapper.appendChild(trigger);
+    wrapper.appendChild(optionsContainer);
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.custom-select-wrapper.open').forEach(w => {
+        if (w !== wrapper) w.classList.remove('open');
+      });
+      wrapper.classList.toggle('open');
+    });
+
+    const form = select.closest('form');
+    if (form) {
+      form.addEventListener('reset', () => {
+        setTimeout(() => {
+          const resetOpt = select.options[select.selectedIndex] || select.options[0];
+          if (resetOpt) {
+            triggerText.textContent = resetOpt.textContent;
+            optionsContainer.querySelectorAll('.custom-option').forEach((el, idx) => {
+              el.classList.toggle('selected', idx === select.selectedIndex);
+            });
+          }
+        }, 10);
+      });
+    }
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.custom-select-wrapper.open').forEach(w => {
+      w.classList.remove('open');
+    });
   });
 }
