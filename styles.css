@@ -3007,3 +3007,65 @@ button, input, textarea {
     justify-content: center;
   }
 }
+
+/* ============================================
+   Dual Video Showcase
+   ============================================ */
+.dual-video-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.video-card-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.video-label-tag {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--acid);
+  background: rgba(215, 255, 63, 0.08);
+  border: 1px solid rgba(215, 255, 63, 0.25);
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+
+.video-label-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.video-card .cinema-video-wrapper {
+  margin-bottom: 0;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.video-card:hover .cinema-video-wrapper {
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(215, 255, 63, 0.12);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .dual-video-showcase {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin-bottom: 36px;
+  }
+}
