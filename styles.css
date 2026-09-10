@@ -644,7 +644,7 @@ button, input, textarea {
   position: relative;
   z-index: 10;
   text-align: center;
-  max-width: 1050px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -667,13 +667,21 @@ button, input, textarea {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5.2vw, 4.4rem);
+  font-size: clamp(1.8rem, 3.8vw, 3.8rem);
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--soft-white);
   margin-bottom: 22px;
   text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+}
+
+.hero-title .hero-line-1 {
+  display: block;
+}
+
+.hero-title .hero-line-2 {
+  display: block;
 }
 
 .hero-title .text-accent {
@@ -2162,7 +2170,7 @@ button, input, textarea {
   }
 
   .hero-title {
-    font-size: clamp(2rem, 9vw, 2.7rem);
+    font-size: clamp(1.35rem, 5.8vw, 1.95rem);
   }
 
   .stats-grid {
