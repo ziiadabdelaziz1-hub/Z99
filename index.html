@@ -20,7 +20,7 @@
   <meta property="og:site_name" content="Z99 Creative Studio">
   <meta property="og:title" content="Z99 Creative Studio | Immersive Experiences &amp; 3D Projection Mapping">
   <meta property="og:description" content="Worldwide 3D architectural projection mapping, luxury weddings, stadium concert stage production, and anamorphic LED displays. Every surface has a story waiting to be told.">
-  <meta property="og:image" content="assets/z99-og-preview.jpg">
+  <meta property="og:image" content="https://z9-creative-studio.vercel.app/assets/z99-og-preview.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Z99 Creative Studio | Immersive Experiences">
   <meta name="twitter:description" content="Worldwide 3D architectural projection mapping, luxury weddings, stadium concert stage production, and anamorphic LED displays. Every surface has a story waiting to be told.">
-  <meta name="twitter:image" content="assets/z99-og-preview.jpg">
+  <meta name="twitter:image" content="https://z9-creative-studio.vercel.app/assets/z99-og-preview.jpg">
   
   <meta name="theme-color" content="#050505">
 
@@ -134,7 +134,7 @@
 
     <div class="container hero-content">
       <h1 class="hero-title">
-        "EVERY SURFACE HAS A STORY <span class="text-accent">WAITING TO BE TOLD</span>"
+        EVERY SURFACE HAS A STORY <span class="text-accent">WAITING TO BE TOLD</span>
       </h1>
       <p class="hero-desc">
         Monumental 3D projection mapping, anamorphic visual reveals, and immersive stage environments — crafted for royal galas, world-class brands, and unforgettable spectacles.
@@ -731,9 +731,15 @@
             <textarea class="form-textarea" id="formMessage" placeholder="Tell us about the venue, date, scale, and visual goals..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%;">
-            Send Project Inquiry
+          <button type="submit" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24"/>
+            </svg>
+            <span>Send Direct WhatsApp Inquiry &rarr;</span>
           </button>
+          <p style="font-size: 0.78rem; color: var(--smoke-gray); text-align: center; margin-top: 12px;">
+            Instant connection to our technical directors with your project specs pre-filled.
+          </p>
         </form>
 
       </div>
@@ -812,30 +818,7 @@
     </div>
   </div>
 
-  <!-- Project Details Lightbox Modal -->
-  <div class="modal-backdrop" id="projectModal" aria-modal="true" role="dialog">
-    <div class="modal-box" style="max-width: 750px;">
-      <button class="modal-close-btn" id="closeProjectModal" aria-label="Close Modal">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-      <div id="projectModalMediaWrap" style="position: relative; height: 340px; width: 100%; background: #000; overflow: hidden; border-bottom: 1px solid var(--graphite);">
-        <!-- Dynamically injected: playable video or image -->
-      </div>
-      <div style="padding: 32px;">
-        <span id="projectModalCategory" style="font-family: var(--font-tech); color: var(--neon-lime); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.12em;"></span>
-        <h3 id="projectModalTitle" style="font-family: var(--font-display); font-size: 1.6rem; color: var(--soft-white); text-transform: uppercase; margin: 8px 0 16px;"></h3>
-        <p id="projectModalDesc" style="color: var(--smoke-gray); line-height: 1.7; font-size: 0.96rem; margin-bottom: 24px;"></p>
-        
-        <h4 style="font-family: var(--font-tech); font-size: 0.8rem; color: var(--soft-white); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;">KEY DELIVERABLES &amp; TECH SPECS:</h4>
-        <ul id="projectModalSpecs" style="list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;"></ul>
 
-        <a href="https://wa.me/201206049448" target="_blank" class="btn btn-primary" onclick="document.getElementById('closeProjectModal').click();">Request Similar Production</a>
-      </div>
-    </div>
-  </div>
 
   <!-- Floating WhatsApp Quick Action -->
   <a href="https://wa.me/201206049448" target="_blank" class="floating-whatsapp" aria-label="Direct WhatsApp Inquiry">

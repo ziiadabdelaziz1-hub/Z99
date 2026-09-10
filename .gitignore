@@ -12,7 +12,6 @@ scripts/
 # Large media rules & safety guards
 *.zip
 *.mp4
-!assets/*.mp4
 
 # Legacy folder names (safety fallback)
 YouTube-Uploads/

@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarousel();
   initProjectFilter();
   initVideoModal();
-  initProjectModal();
   initContactForm();
   initMoodboardLightbox();
 });
@@ -389,128 +388,7 @@ function initVideoModal() {
   });
 }
 
-/* ==========================================================================
-   7. PROJECT DETAILS MODAL
-   ========================================================================== */
-const projectData = {
-  abdeen: {
-    title: "Abdeen Palace: Royal Bridal Entrance 3D Mapping",
-    category: "Monumental Architectural Mapping",
-    image: "assets/abdeen-palace.jpg",
-    video: "assets/abdeen-palace.mp4",
-    specs: ["Historic Palace Facade Scan", "Sub-Millimeter Column & Window Calibration", "Live Orchestral Music Choreography", "Custom Computational 3D Illusions"],
-    desc: "A monumental royal bridal entrance mapped onto the historic neoclassical facade of Abdeen Palace in Cairo. Custom computational 3D visual storytelling synchronized with live orchestral music, turning historic palace stone into a living, breathing spectacle."
-  },
-  byd: {
-    title: "BYD Global: Next-Gen EV Reveal & Anamorphic Visuals",
-    category: "Automotive & Brand Activations",
-    image: "assets/byd-hero.jpg",
-    video: "assets/byd-reveal.mp4",
-    specs: ["Anamorphic 3D LED Screen Content", "Volumetric Vehicle Reveal Effects", "Photorealistic CGI Pre-Visualization", "High-Impact Kinetic Motion Design"],
-    desc: "Next-generation electric vehicle reveal show engineered for BYD. High-impact 3D anamorphic depth illusions, photorealistic vehicle CGI simulations, and synchronized lighting choreography designed to dominate the room and social feeds."
-  },
-  fossil: {
-    title: "Fossil: 3D Timepiece CGI Simulation & Launch Visuals",
-    category: "Product CGI & Motion Design",
-    image: "assets/fossil-hero.jpg",
-    video: "assets/fossil-watch.mp4",
-    specs: ["Sub-Millimeter Metallic Texturing", "Macro Lighting & Material Physics", "Cinematic Commercial Animation", "Ultra-High Definition Screen Playback"],
-    desc: "High-fidelity 3D timepiece simulation and cinematic commercial motion design created for Fossil. Featuring sub-millimeter metallic texturing, dynamic lighting reflections, and seamless looping visual effects."
-  },
-  concerts: {
-    title: "Stadium Concerts & Live Festival Stages",
-    category: "Concerts & Music Festivals",
-    image: "assets/concert-real.jpg",
-    specs: ["Pulsing Festival Stage Displays", "Audio-Reactive Real-Time Loops", "High-Lumen Projector Rigs", "Crowd Euphoria Visual Direction"],
-    desc: "Pulsing festival stage visuals, synchronized projection mapping, and real-time audio-reactive visual loops engineered to amplify crowd euphoria across major concerts and music festivals."
-  },
-  weddings: {
-    title: "Royal Weddings & Immersive Ballroom Transformations",
-    category: "Weddings & Private Celebrations",
-    image: "assets/wedding-luxury.jpg",
-    video: "assets/wedding-mapping.mp4",
-    specs: ["360° Ballroom Venue Mapping", "Bridal Entrance Projection Sequences", "Bespoke Cake Projection Mapping", "Dreamlike Architectural Table-Scapes"],
-    desc: "From complete ballroom transformations to bridal entrance visual journeys, cake mapping, and dreamlike table-scape visuals — we turn physical venues into enchanting, personalized environments that bring the couple's love story to life."
-  }
-};
 
-function initProjectModal() {
-  const triggers = document.querySelectorAll('[data-project-id]');
-  const modal = document.getElementById('projectModal');
-  const closeBtn = document.getElementById('closeProjectModal');
-
-  if (!modal) return;
-
-  const modalMediaWrap = document.getElementById('projectModalMediaWrap');
-  const modalCategory = document.getElementById('projectModalCategory');
-  const modalTitle = document.getElementById('projectModalTitle');
-  const modalDesc = document.getElementById('projectModalDesc');
-  const modalSpecs = document.getElementById('projectModalSpecs');
-
-  function openProject(id) {
-    const data = projectData[id];
-    if (!data) return;
-
-    if (modalMediaWrap) {
-      if (data.video) {
-        modalMediaWrap.innerHTML = `
-          <video controls autoplay playsinline controlslist="nodownload" style="width: 100%; height: 100%; object-fit: contain; background: #000;" poster="${data.image}">
-            <source src="${data.video}" type="video/mp4">
-            Your browser does not support HTML5 video playback.
-          </video>
-        `;
-      } else {
-        modalMediaWrap.innerHTML = `
-          <img src="${data.image}" alt="${data.title}" style="width: 100%; height: 100%; object-fit: cover;">
-        `;
-      }
-    }
-
-    modalCategory.textContent = data.category;
-    modalTitle.textContent = data.title;
-    modalDesc.textContent = data.desc;
-
-    modalSpecs.innerHTML = '';
-    data.specs.forEach(spec => {
-      const li = document.createElement('li');
-      li.style.display = 'flex';
-      li.style.alignItems = 'center';
-      li.style.gap = '8px';
-      li.style.fontSize = '0.88rem';
-      li.style.color = '#F5F5F2';
-      li.innerHTML = `<span style="color:#D7FF3F;">✦</span> ${spec}`;
-      modalSpecs.appendChild(li);
-    });
-
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeProject() {
-    modal.classList.remove('open');
-    if (modalMediaWrap) {
-      const vid = modalMediaWrap.querySelector('video');
-      if (vid) vid.pause();
-      modalMediaWrap.innerHTML = '';
-    }
-    document.body.style.overflow = '';
-  }
-
-  triggers.forEach(t => t.addEventListener('click', (e) => {
-    e.preventDefault();
-    const id = t.getAttribute('data-project-id');
-    openProject(id);
-  }));
-
-  if (closeBtn) closeBtn.addEventListener('click', closeProject);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeProject();
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeProject();
-  });
-}
 
 /* ==========================================================================
    8. CONTACT FORM & TOAST
@@ -540,12 +418,12 @@ function initContactForm() {
     const waUrl = `https://wa.me/201206049448?text=${waText}`;
 
     // Success feedback
-    showToast(`Thank you, ${name}! Your inquiry has been sent to z99creativestudio@gmail.com.`);
+    showToast(`Connecting to WhatsApp with your project inquiry, ${name}...`);
     
-    // Optionally open WhatsApp in a new tab to complete booking
+    // Open WhatsApp in a new tab
     setTimeout(() => {
       window.open(waUrl, '_blank');
-    }, 1200);
+    }, 400);
 
     form.reset();
   });
