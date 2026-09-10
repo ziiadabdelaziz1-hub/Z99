@@ -5,15 +5,20 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Large local media archives & staging
-YouTube-Uploads/
-Raw-Media-Archive/
-references/
+# Local Studio Master Archive & Media Vault
+_vault/
+scripts/
+
+# Large media rules & safety guards
 *.zip
 *.mp4
 !assets/*.mp4
+
+# Legacy folder names (safety fallback)
+YouTube-Uploads/
+Raw-Media-Archive/
+references/
 assets/pipeline-backup/
+Z9-Projects/
 z9-*/
 z9-*
-Z9-Projects/
-scripts/

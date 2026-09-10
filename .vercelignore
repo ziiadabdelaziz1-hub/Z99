@@ -1,9 +1,8 @@
-﻿.git
+.git
 .gitignore
 .github
-YouTube-Uploads
-Raw-Media-Archive
-references
+_vault
+scripts
 *.zip
 *.mp4
 !assets/*.mp4
