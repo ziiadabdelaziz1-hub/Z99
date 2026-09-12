@@ -3156,26 +3156,19 @@ button, input, textarea {
   gap: 10px;
 }
 
-.video-label-tag {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+.video-label-heading {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--acid);
-  background: rgba(215, 255, 63, 0.08);
-  border: 1px solid rgba(215, 255, 63, 0.25);
-  border-radius: 4px;
-  padding: 4px 10px;
+  color: var(--soft-white);
+  margin: 0;
+  line-height: 1;
 }
 
-.video-label-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--mist);
+.video-label-num {
+  color: var(--neon-lime);
 }
 
 .video-card .cinema-video-wrapper {
