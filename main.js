@@ -4,6 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPreloader();
   initHeroCanvas();
   initNavbar();
   initMobileDrawer();
@@ -16,6 +17,76 @@ document.addEventListener('DOMContentLoaded', () => {
   initCustomSelect();
   initIframeCursorOverlay();
 });
+
+/* ==========================================================================
+   0. PRELOADER
+   ========================================================================== */
+function initPreloader() {
+  // Inject preloader HTML
+  const el = document.createElement('div');
+  el.id = 'z99-preloader';
+  el.innerHTML = `
+    <div class="preloader-logo">
+      <img src="assets/z99-logo.png" alt="Z99" class="preloader-logo-img">
+      <span class="preloader-logo-tagline">Creative Studio</span>
+    </div>
+    <div class="preloader-counter">0</div>
+    <span class="preloader-tagline">Loading Experience</span>
+    <div class="preloader-bar-track">
+      <div class="preloader-bar-fill"></div>
+    </div>
+  `;
+  // Insert as first child of body (or document.documentElement if body not ready)
+  const target = document.body || document.documentElement;
+  target.insertBefore(el, target.firstChild);
+
+  const counter = el.querySelector('.preloader-counter');
+  const fill    = el.querySelector('.preloader-bar-fill');
+
+  let progress   = 0;
+  const MIN_MS   = 1800; // always show for at least 1.8s
+  const start    = performance.now();
+  let pageLoaded = false;
+
+  // Tick progress forward
+  function tick() {
+    const elapsed  = performance.now() - start;
+    const timePct  = Math.min((elapsed / MIN_MS) * 100, 97);
+    // Drift toward time-based progress or 97, whichever is higher when page loads
+    const target   = pageLoaded ? 100 : timePct;
+    progress += (target - progress) * 0.08;
+    if (progress > 99.5) progress = 100;
+
+    const p = Math.round(progress);
+    counter.textContent = p;
+    fill.style.width    = p + '%';
+
+    if (p < 100) {
+      requestAnimationFrame(tick);
+    } else {
+      // Small pause at 100 then slide away
+      setTimeout(dismiss, 200);
+    }
+  }
+
+  function dismiss() {
+    el.classList.add('exit');
+    el.addEventListener('transitionend', () => el.remove(), { once: true });
+    // Restore scroll if we locked it
+    document.body.style.overflow = '';
+  }
+
+  // Lock scroll during preloader
+  document.body.style.overflow = 'hidden';
+
+  // Start ticking immediately
+  requestAnimationFrame(tick);
+
+  // Flag when page is fully loaded
+  window.addEventListener('load', () => {
+    pageLoaded = true;
+  }, { once: true });
+}
 
 /* ==========================================================================
    1. HERO AMBIENT CANVAS (Cyber Laser & Projection Mapping Mesh)
