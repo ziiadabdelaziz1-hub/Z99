@@ -3183,7 +3183,7 @@ button, input, textarea {
    CUSTOM INTERACTIVE CURSOR
    ========================================================================== */
 @media (hover: hover) and (pointer: fine) {
-  html, body, a, button, select, [role="button"] {
+  *, *::before, *::after {
     cursor: none !important;
   }
 
