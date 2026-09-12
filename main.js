@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMoodboardLightbox();
   initCustomCursor();
   initCustomSelect();
+  initIframeCursorOverlay();
 });
 
 /* ==========================================================================
@@ -825,4 +826,47 @@ function initCustomSelect() {
       w.classList.remove('open');
     });
   });
+}
+
+/* ==========================================================================
+   11. IFRAME CURSOR OVERLAY (keeps custom cursor alive over YouTube iframes)
+   ========================================================================== */
+function initIframeCursorOverlay() {
+  // Only needed on devices where the custom cursor is active
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  function attachOverlay(wrapper) {
+    if (wrapper.querySelector('.iframe-cursor-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'iframe-cursor-overlay';
+    wrapper.appendChild(overlay);
+
+    // On click: lift overlay so YouTube receives the click, then restore on leave
+    overlay.addEventListener('click', () => {
+      overlay.classList.add('clicked');
+    });
+
+    // Restore overlay when mouse leaves the wrapper
+    wrapper.addEventListener('mouseleave', () => {
+      overlay.classList.remove('clicked');
+    });
+  }
+
+  // Attach to all existing wrappers
+  document.querySelectorAll('.cinema-video-wrapper').forEach(attachOverlay);
+
+  // Also watch for dynamically injected wrappers (e.g. modal video)
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType !== 1) return;
+        if (node.classList && node.classList.contains('cinema-video-wrapper')) {
+          attachOverlay(node);
+        }
+        node.querySelectorAll && node.querySelectorAll('.cinema-video-wrapper').forEach(attachOverlay);
+      });
+    });
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
 }

@@ -2606,6 +2606,22 @@ button, input, textarea {
   margin-bottom: 60px;
 }
 
+/* Transparent overlay on top of iframes to keep custom cursor tracking alive */
+.iframe-cursor-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: transparent;
+  cursor: none !important;
+}
+
+.iframe-cursor-overlay.clicked {
+  pointer-events: none;
+}
+
 .cinema-video-wrapper video {
   width: 100%;
   height: 100%;
