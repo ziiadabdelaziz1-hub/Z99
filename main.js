@@ -20,10 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   0. PRELOADER
+   0. PRELOADER & CIRCLE PAGE TRANSITIONS
    ========================================================================== */
 function initPreloader() {
-  // Inject preloader HTML
+  const navEntry = performance.getEntriesByType('navigation')[0];
+  const isReload = navEntry ? navEntry.type === 'reload' : (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
+  const isFirstLand = !sessionStorage.getItem('z99_visited');
+
+  if (isFirstLand || isReload) {
+    sessionStorage.setItem('z99_visited', 'true');
+    runFullPreloader();
+  } else {
+    runIncomingCircleTransition();
+  }
+
+  initPageTransitions();
+}
+
+function runFullPreloader() {
   const el = document.createElement('div');
   el.id = 'z99-preloader';
   el.innerHTML = `
@@ -35,24 +49,20 @@ function initPreloader() {
       <div class="preloader-bar-fill"></div>
     </div>
   `;
-  // Insert as first child of body (or document.documentElement if body not ready)
   const target = document.body || document.documentElement;
   target.insertBefore(el, target.firstChild);
 
-  const fill    = el.querySelector('.preloader-bar-fill');
-
-  let progress   = 0;
-  const MIN_MS   = 1800; // always show for at least 1.8s
-  const start    = performance.now();
+  const fill = el.querySelector('.preloader-bar-fill');
+  let progress = 0;
+  const MIN_MS = 1800; // 1.8s for cinematic brand introduction
+  const start = performance.now();
   let pageLoaded = false;
 
-  // Tick progress forward
   function tick() {
-    const elapsed  = performance.now() - start;
-    const timePct  = Math.min((elapsed / MIN_MS) * 100, 97);
-    // Drift toward time-based progress or 97, whichever is higher when page loads
-    const target   = pageLoaded ? 100 : timePct;
-    progress += (target - progress) * 0.08;
+    const elapsed = performance.now() - start;
+    const timePct = Math.min((elapsed / MIN_MS) * 100, 97);
+    const targetVal = pageLoaded ? 100 : timePct;
+    progress += (targetVal - progress) * 0.08;
     if (progress > 99.5) progress = 100;
 
     const p = Math.round(progress);
@@ -61,7 +71,6 @@ function initPreloader() {
     if (p < 100) {
       requestAnimationFrame(tick);
     } else {
-      // Small pause at 100 then slide away
       setTimeout(dismiss, 200);
     }
   }
@@ -69,20 +78,124 @@ function initPreloader() {
   function dismiss() {
     el.classList.add('exit');
     el.addEventListener('transitionend', () => el.remove(), { once: true });
-    // Restore scroll if we locked it
     document.body.style.overflow = '';
   }
 
-  // Lock scroll during preloader
   document.body.style.overflow = 'hidden';
-
-  // Start ticking immediately
   requestAnimationFrame(tick);
 
-  // Flag when page is fully loaded
   window.addEventListener('load', () => {
     pageLoaded = true;
   }, { once: true });
+}
+
+function runIncomingCircleTransition() {
+  const fromTransition = sessionStorage.getItem('z99_transitioning');
+  if (!fromTransition) return;
+  sessionStorage.removeItem('z99_transitioning');
+
+  const el = document.createElement('div');
+  el.id = 'z99-circle-transition';
+  el.className = 'active';
+  el.innerHTML = `
+    <div class="circle-transition-wrap">
+      <svg class="circle-svg" viewBox="0 0 80 80">
+        <circle class="circle-bg" cx="40" cy="40" r="32"></circle>
+        <circle class="circle-stroke completed" cx="40" cy="40" r="32"></circle>
+      </svg>
+    </div>
+  `;
+  const target = document.body || document.documentElement;
+  target.insertBefore(el, target.firstChild);
+
+  // Smoothly dissolve completed ring to reveal newly arrived page
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      el.classList.add('exit');
+      setTimeout(() => el.remove(), 260);
+    }, 60);
+  });
+}
+
+function initPageTransitions() {
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    // Ignore anchors, custom protocols, new tabs, downloads, and modal triggers
+    if (
+      href.startsWith('#') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:') ||
+      href.startsWith('javascript:') ||
+      link.target === '_blank' ||
+      link.hasAttribute('download') ||
+      link.hasAttribute('data-video-trigger') ||
+      e.ctrlKey || e.metaKey || e.shiftKey
+    ) {
+      return;
+    }
+
+    let targetUrl;
+    try {
+      targetUrl = new URL(link.href, window.location.href);
+    } catch {
+      return;
+    }
+
+    if (targetUrl.origin !== window.location.origin) return;
+
+    // Same page navigation
+    if (targetUrl.pathname === window.location.pathname && targetUrl.search === window.location.search) {
+      return;
+    }
+
+    e.preventDefault();
+    triggerCircleTransition(targetUrl.href);
+  });
+
+  // Handle browser back/forward (bfcache)
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      const transitionEl = document.getElementById('z99-circle-transition');
+      if (transitionEl) transitionEl.remove();
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+function triggerCircleTransition(url) {
+  let el = document.getElementById('z99-circle-transition');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'z99-circle-transition';
+    el.innerHTML = `
+      <div class="circle-transition-wrap">
+        <svg class="circle-svg" viewBox="0 0 80 80">
+          <circle class="circle-bg" cx="40" cy="40" r="32"></circle>
+          <circle class="circle-stroke" cx="40" cy="40" r="32"></circle>
+        </svg>
+      </div>
+    `;
+    document.body.appendChild(el);
+  }
+
+  sessionStorage.setItem('z99_transitioning', 'true');
+  el.classList.remove('exit');
+  el.classList.add('active');
+
+  // Trigger stroke draw animation on next frame
+  requestAnimationFrame(() => {
+    el.classList.add('animating');
+  });
+
+  // When the circular ring animation completes its full 360-degree draw, navigate to the new page!
+  setTimeout(() => {
+    window.location.href = url;
+  }, 380);
 }
 
 /* ==========================================================================
