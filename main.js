@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCustomCursor();
   initCustomSelect();
   initIframeCursorOverlay();
+  initCategoryPillsScroll();
 });
 
 /* ==========================================================================
@@ -416,6 +417,17 @@ function initProjectFilter() {
       });
     });
   });
+}
+
+function initCategoryPillsScroll() {
+  const container = document.querySelector('.case-category-pills');
+  const activePill = document.querySelector('.case-category-pills .case-cat-pill.active');
+  if (container && activePill) {
+    setTimeout(() => {
+      const pillOffset = activePill.offsetLeft - (container.clientWidth / 2) + (activePill.clientWidth / 2);
+      container.scrollTo({ left: Math.max(0, pillOffset), behavior: 'smooth' });
+    }, 120);
+  }
 }
 
 /* ==========================================================================

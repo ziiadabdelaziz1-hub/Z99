@@ -2292,6 +2292,36 @@ button, input, textarea {
     width: 36px;
     height: 36px;
   }
+
+  /* Mobile Horizontal Scrollable Pill Strip */
+  .case-category-pills {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    width: calc(100% + 32px) !important;
+    margin: 12px -16px 0 !important;
+    padding: 6px 16px 14px !important;
+    gap: 8px !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .case-category-pills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .case-cat-pill {
+    flex-shrink: 0 !important;
+    scroll-snap-align: start;
+    padding: 7px 14px;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
 }
 
 /* Compact Smartphones (< 480px) */
@@ -2345,6 +2375,11 @@ button, input, textarea {
     font-size: 0.68rem;
     letter-spacing: 0.03em;
     white-space: nowrap;
+  }
+
+  .case-cat-pill {
+    padding: 6px 13px;
+    font-size: 0.68rem;
   }
 }
 
