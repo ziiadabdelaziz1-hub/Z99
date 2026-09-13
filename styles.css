@@ -985,7 +985,7 @@ button, input, textarea {
   text-transform: uppercase;
   color: var(--soft-white);
   letter-spacing: 0.04em;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
 .showreel-lead-sub {
