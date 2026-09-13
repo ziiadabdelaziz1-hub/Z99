@@ -502,9 +502,10 @@ function initContactForm() {
     // Success feedback
     showToast(`Connecting to WhatsApp with your project inquiry, ${name}...`);
     
-    // Open WhatsApp in a new tab
+    // Open WhatsApp in a new tab securely
     setTimeout(() => {
-      window.open(waUrl, '_blank');
+      const waWin = window.open(waUrl, '_blank', 'noopener,noreferrer');
+      if (waWin) waWin.opener = null;
     }, 400);
 
     form.reset();
