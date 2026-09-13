@@ -109,12 +109,12 @@ function runIncomingCircleTransition() {
   const target = document.body || document.documentElement;
   target.insertBefore(el, target.firstChild);
 
-  // Smoothly dissolve completed ring to reveal newly arrived page
+  // Smoothly trigger the Iris Bloom expansion to reveal newly arrived page
   requestAnimationFrame(() => {
     setTimeout(() => {
-      el.classList.add('exit');
-      setTimeout(() => el.remove(), 260);
-    }, 60);
+      el.classList.add('bloom-exit');
+      setTimeout(() => el.remove(), 480);
+    }, 40);
   });
 }
 
@@ -186,7 +186,7 @@ function triggerCircleTransition(url) {
   }
 
   sessionStorage.setItem('z99_transitioning', 'true');
-  el.classList.remove('exit');
+  el.classList.remove('exit', 'bloom-exit');
   el.classList.add('active');
 
   // Trigger stroke draw animation on next frame
@@ -194,10 +194,15 @@ function triggerCircleTransition(url) {
     el.classList.add('animating');
   });
 
-  // When the circular ring animation completes its full 360-degree draw, navigate to the new page!
+  // Start the bloom right as the circle connects (360ms)
+  setTimeout(() => {
+    el.classList.add('bloom-exit');
+  }, 360);
+
+  // Navigate right as the bloom begins
   setTimeout(() => {
     window.location.href = url;
-  }, 380);
+  }, 390);
 }
 
 /* ==========================================================================

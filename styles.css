@@ -3518,13 +3518,13 @@ button, input, textarea {
   position: fixed;
   inset: 0;
   z-index: 9999998;
-  background: rgba(5, 5, 5, 0.92);
+  background: rgba(5, 5, 5, 0.94);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #z99-circle-transition.active {
@@ -3535,7 +3535,7 @@ button, input, textarea {
 #z99-circle-transition.exit {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.22s ease-out;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .circle-transition-wrap {
@@ -3551,6 +3551,22 @@ button, input, textarea {
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 32px rgba(215, 255, 63, 0.25);
+  transition: transform 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Option 1: The Iris Bloom — Ring expands outward and seamlessly dissolves into new page */
+#z99-circle-transition.bloom-exit .circle-transition-wrap {
+  transform: scale(1.85);
+  opacity: 0;
+  box-shadow: 0 0 70px rgba(215, 255, 63, 0.7);
+}
+
+#z99-circle-transition.bloom-exit {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.46s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .circle-svg {
