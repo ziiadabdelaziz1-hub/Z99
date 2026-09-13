@@ -3028,8 +3028,11 @@ button, input, textarea {
 }
 
 .case-cat-pill:hover {
-  color: var(--soft-white);
-  border-color: var(--smoke-gray);
+  color: var(--neon-lime);
+  border-color: var(--neon-lime);
+  background: rgba(215, 255, 63, 0.12);
+  box-shadow: 0 0 16px var(--lime-glow);
+  transform: translateY(-1px);
 }
 
 .case-cat-pill.active {
@@ -3037,6 +3040,14 @@ button, input, textarea {
   color: var(--void-black);
   border-color: var(--neon-lime);
   box-shadow: 0 0 15px var(--lime-glow);
+}
+
+.case-cat-pill.active:hover {
+  background: var(--electric-lime);
+  color: var(--void-black);
+  border-color: var(--electric-lime);
+  box-shadow: 0 0 20px var(--lime-glow-strong);
+  transform: translateY(-1px);
 }
 
 .case-stream-card {
