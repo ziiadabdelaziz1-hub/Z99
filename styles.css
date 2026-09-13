@@ -959,14 +959,14 @@ button, input, textarea {
   justify-content: center;
   box-shadow: 0 0 35px var(--lime-glow);
   transition: all var(--transition-bounce);
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .play-button-ring svg {
   width: 32px;
   height: 32px;
   fill: var(--neon-lime);
-  margin-left: 5px;
+  margin-left: 2px;
   transition: transform var(--transition-fast);
 }
 
@@ -980,12 +980,18 @@ button, input, textarea {
 }
 
 .showreel-lead-title {
+  position: absolute;
+  top: calc(50% + 60px);
+  left: 0;
+  right: 0;
+  text-align: center;
   font-family: var(--font-display);
   font-size: 1.35rem;
   text-transform: uppercase;
   color: var(--soft-white);
   letter-spacing: 0.06em;
   margin-bottom: 0;
+  pointer-events: none;
 }
 
 .showreel-lead-sub {
@@ -2040,16 +2046,17 @@ button, input, textarea {
   .play-button-ring {
     width: 64px;
     height: 64px;
-    margin-bottom: 12px;
+    margin-bottom: 0;
   }
 
   .play-button-ring svg {
     width: 22px;
     height: 22px;
-    margin-left: 3px;
+    margin-left: 1px;
   }
 
   .showreel-lead-title {
+    top: calc(50% + 44px);
     font-size: 0.88rem;
     letter-spacing: 0.08em;
     text-align: center;
