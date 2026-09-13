@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   0. PRELOADER & CIRCLE PAGE TRANSITIONS
+   0. PRELOADER (First land & Reload only)
    ========================================================================== */
 function initPreloader() {
   const navEntry = performance.getEntriesByType('navigation')[0];
@@ -30,11 +30,7 @@ function initPreloader() {
   if (isFirstLand || isReload) {
     sessionStorage.setItem('z99_visited', 'true');
     runFullPreloader();
-  } else {
-    runIncomingCircleTransition();
   }
-
-  initPageTransitions();
 }
 
 function runFullPreloader() {
@@ -87,122 +83,6 @@ function runFullPreloader() {
   window.addEventListener('load', () => {
     pageLoaded = true;
   }, { once: true });
-}
-
-function runIncomingCircleTransition() {
-  const fromTransition = sessionStorage.getItem('z99_transitioning');
-  if (!fromTransition) return;
-  sessionStorage.removeItem('z99_transitioning');
-
-  const el = document.createElement('div');
-  el.id = 'z99-circle-transition';
-  el.className = 'active';
-  el.innerHTML = `
-    <div class="circle-transition-wrap">
-      <svg class="circle-svg" viewBox="0 0 80 80">
-        <circle class="circle-bg" cx="40" cy="40" r="32"></circle>
-        <circle class="circle-glow completed" cx="40" cy="40" r="32"></circle>
-        <circle class="circle-stroke completed" cx="40" cy="40" r="32"></circle>
-      </svg>
-    </div>
-  `;
-  const target = document.body || document.documentElement;
-  target.insertBefore(el, target.firstChild);
-
-  // Smoothly trigger the Iris Bloom expansion to reveal newly arrived page
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      el.classList.add('bloom-exit');
-      setTimeout(() => el.remove(), 480);
-    }, 40);
-  });
-}
-
-function initPageTransitions() {
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('a');
-    if (!link) return;
-
-    const href = link.getAttribute('href');
-    if (!href) return;
-
-    // Ignore anchors, custom protocols, new tabs, downloads, and modal triggers
-    if (
-      href.startsWith('#') ||
-      href.startsWith('mailto:') ||
-      href.startsWith('tel:') ||
-      href.startsWith('javascript:') ||
-      link.target === '_blank' ||
-      link.hasAttribute('download') ||
-      link.hasAttribute('data-video-trigger') ||
-      e.ctrlKey || e.metaKey || e.shiftKey
-    ) {
-      return;
-    }
-
-    let targetUrl;
-    try {
-      targetUrl = new URL(link.href, window.location.href);
-    } catch {
-      return;
-    }
-
-    if (targetUrl.origin !== window.location.origin) return;
-
-    // Same page navigation
-    if (targetUrl.pathname === window.location.pathname && targetUrl.search === window.location.search) {
-      return;
-    }
-
-    e.preventDefault();
-    triggerCircleTransition(targetUrl.href);
-  });
-
-  // Handle browser back/forward (bfcache)
-  window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-      const transitionEl = document.getElementById('z99-circle-transition');
-      if (transitionEl) transitionEl.remove();
-      document.body.style.overflow = '';
-    }
-  });
-}
-
-function triggerCircleTransition(url) {
-  let el = document.getElementById('z99-circle-transition');
-  if (!el) {
-    el = document.createElement('div');
-    el.id = 'z99-circle-transition';
-    el.innerHTML = `
-      <div class="circle-transition-wrap">
-        <svg class="circle-svg" viewBox="0 0 80 80">
-          <circle class="circle-bg" cx="40" cy="40" r="32"></circle>
-          <circle class="circle-glow" cx="40" cy="40" r="32"></circle>
-          <circle class="circle-stroke" cx="40" cy="40" r="32"></circle>
-        </svg>
-      </div>
-    `;
-    document.body.appendChild(el);
-  }
-
-  sessionStorage.setItem('z99_transitioning', 'true');
-  el.classList.remove('exit', 'bloom-exit');
-  el.classList.add('active');
-
-  // Trigger stroke draw animation on next frame
-  requestAnimationFrame(() => {
-    el.classList.add('animating');
-  });
-
-  // Start the bloom right as the circle connects (360ms)
-  setTimeout(() => {
-    el.classList.add('bloom-exit');
-  }, 360);
-
-  // Navigate right as the bloom begins
-  setTimeout(() => {
-    window.location.href = url;
-  }, 390);
 }
 
 /* ==========================================================================
