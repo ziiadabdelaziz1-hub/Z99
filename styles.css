@@ -3518,9 +3518,7 @@ button, input, textarea {
   position: fixed;
   inset: 0;
   z-index: 9999998;
-  background: rgba(5, 5, 5, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(5, 5, 5, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3544,41 +3542,62 @@ button, input, textarea {
   position: relative;
   width: 80px;
   height: 80px;
+  border-radius: 50%;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 32px rgba(215, 255, 63, 0.25);
 }
 
 .circle-svg {
   width: 80px;
   height: 80px;
+  border-radius: 50%;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  overflow: visible;
   transform: rotate(-90deg);
   transform-origin: center;
 }
 
 .circle-bg {
   fill: none;
-  stroke: rgba(215, 255, 63, 0.12);
+  stroke: rgba(215, 255, 63, 0.1);
   stroke-width: 3.5;
+}
+
+.circle-glow {
+  fill: none;
+  stroke: var(--neon-lime);
+  stroke-width: 8;
+  opacity: 0.3;
+  stroke-linecap: round;
+  stroke-dasharray: 201.06;
+  stroke-dashoffset: 201.06;
 }
 
 .circle-stroke {
   fill: none;
   stroke: var(--neon-lime);
-  stroke-width: 4;
+  stroke-width: 3.5;
   stroke-linecap: round;
   stroke-dasharray: 201.06;
   stroke-dashoffset: 201.06;
-  filter: drop-shadow(0 0 10px rgba(215, 255, 63, 0.8)) drop-shadow(0 0 24px rgba(215, 255, 63, 0.4));
 }
 
-#z99-circle-transition.animating .circle-stroke {
+#z99-circle-transition.animating .circle-stroke,
+#z99-circle-transition.animating .circle-glow {
   animation: drawCircleRing 0.38s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-.circle-stroke.completed {
+.circle-stroke.completed,
+.circle-glow.completed {
   stroke-dashoffset: 0;
-  filter: drop-shadow(0 0 14px rgba(215, 255, 63, 0.9)) drop-shadow(0 0 28px rgba(215, 255, 63, 0.45));
 }
 
 @keyframes drawCircleRing {

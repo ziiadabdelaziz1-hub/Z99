@@ -101,6 +101,7 @@ function runIncomingCircleTransition() {
     <div class="circle-transition-wrap">
       <svg class="circle-svg" viewBox="0 0 80 80">
         <circle class="circle-bg" cx="40" cy="40" r="32"></circle>
+        <circle class="circle-glow completed" cx="40" cy="40" r="32"></circle>
         <circle class="circle-stroke completed" cx="40" cy="40" r="32"></circle>
       </svg>
     </div>
@@ -176,6 +177,7 @@ function triggerCircleTransition(url) {
       <div class="circle-transition-wrap">
         <svg class="circle-svg" viewBox="0 0 80 80">
           <circle class="circle-bg" cx="40" cy="40" r="32"></circle>
+          <circle class="circle-glow" cx="40" cy="40" r="32"></circle>
           <circle class="circle-stroke" cx="40" cy="40" r="32"></circle>
         </svg>
       </div>
