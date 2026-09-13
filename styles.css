@@ -207,7 +207,7 @@ button, input, textarea {
   background: rgba(5, 5, 5, 0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--graphite);
+  border-bottom: none;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
 }
 
