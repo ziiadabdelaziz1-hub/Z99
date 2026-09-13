@@ -1629,6 +1629,15 @@ button, input, textarea {
   min-height: 120px;
 }
 
+.whatsapp-submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
 /* ==========================================================================
    FOOTER
    ========================================================================== */
@@ -2244,6 +2253,20 @@ button, input, textarea {
     word-break: break-word;
   }
 
+  .whatsapp-submit-btn {
+    padding: 12px 14px;
+    font-size: 0.74rem;
+    letter-spacing: 0.03em;
+    gap: 7px;
+    white-space: nowrap;
+  }
+
+  .whatsapp-submit-btn svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+  }
+
   /* Footer Mobile */
   .footer {
     padding: 40px 0 90px; /* Leave comfortable clearance for floating WhatsApp */
@@ -2380,6 +2403,19 @@ button, input, textarea {
   .case-cat-pill {
     padding: 6px 13px;
     font-size: 0.68rem;
+  }
+
+  .whatsapp-submit-btn {
+    padding: 11px 8px;
+    font-size: 0.67rem;
+    letter-spacing: 0.02em;
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  .whatsapp-submit-btn svg {
+    width: 15px;
+    height: 15px;
   }
 }
 
