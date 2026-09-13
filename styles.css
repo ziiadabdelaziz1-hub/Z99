@@ -3326,10 +3326,10 @@ button, input, textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 28px;
   pointer-events: all;
   transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1),
-              opacity 0.4s ease 0.6s;
+              opacity 0.4s ease 0.65s;
 }
 
 #z99-preloader.exit {
@@ -3337,70 +3337,50 @@ button, input, textarea {
   opacity: 0;
 }
 
-/* Logo block */
+/* Logo block — the hero */
 .preloader-logo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  animation: preloader-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  gap: 14px;
+  animation: preloader-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .preloader-logo-img {
-  width: 80px;
+  width: 120px;
   height: auto;
+  filter: drop-shadow(0 0 24px rgba(215, 255, 63, 0.15));
 }
 
 .preloader-logo-tagline {
   font-family: var(--font-tech);
-  font-size: 0.65rem;
-  letter-spacing: 0.35em;
+  font-size: 0.7rem;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--smoke-gray);
 }
 
-/* Counter */
-.preloader-counter {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 8vw, 6rem);
-  font-weight: 900;
-  color: var(--neon-lime);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  animation: preloader-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
-  min-width: 3ch;
-  text-align: center;
-}
-
-/* Progress bar */
+/* Progress bar — sits inline below the logo */
 .preloader-bar-track {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.06);
+  width: 260px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 99px;
+  overflow: hidden;
+  animation: preloader-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 
 .preloader-bar-fill {
   height: 100%;
   width: 0%;
   background: var(--neon-lime);
-  box-shadow: 0 0 14px rgba(215, 255, 63, 0.7);
-  transition: width 0.05s linear;
+  border-radius: 99px;
+  box-shadow: 0 0 16px rgba(215, 255, 63, 0.65),
+              0 0 40px rgba(215, 255, 63, 0.2);
+  transition: width 0.04s linear;
 }
 
-/* Tagline */
-.preloader-tagline {
-  font-family: var(--font-tech);
-  font-size: 0.7rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--smoke-gray);
-  animation: preloader-fade-in 0.5s ease 0.3s both;
-}
-
-@keyframes preloader-fade-in {
-  from { opacity: 0; transform: translateY(12px); }
+@keyframes preloader-rise {
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }

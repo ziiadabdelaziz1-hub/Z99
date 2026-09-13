@@ -30,8 +30,6 @@ function initPreloader() {
       <img src="assets/z99-logo.png" alt="Z99" class="preloader-logo-img">
       <span class="preloader-logo-tagline">Creative Studio</span>
     </div>
-    <div class="preloader-counter">0</div>
-    <span class="preloader-tagline">Loading Experience</span>
     <div class="preloader-bar-track">
       <div class="preloader-bar-fill"></div>
     </div>
@@ -40,7 +38,6 @@ function initPreloader() {
   const target = document.body || document.documentElement;
   target.insertBefore(el, target.firstChild);
 
-  const counter = el.querySelector('.preloader-counter');
   const fill    = el.querySelector('.preloader-bar-fill');
 
   let progress   = 0;
@@ -58,8 +55,7 @@ function initPreloader() {
     if (progress > 99.5) progress = 100;
 
     const p = Math.round(progress);
-    counter.textContent = p;
-    fill.style.width    = p + '%';
+    fill.style.width = p + '%';
 
     if (p < 100) {
       requestAnimationFrame(tick);
