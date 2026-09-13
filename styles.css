@@ -678,10 +678,12 @@ button, input, textarea {
 
 .hero-title .hero-line-1 {
   display: block;
+  white-space: nowrap;
 }
 
 .hero-title .hero-line-2 {
   display: block;
+  white-space: nowrap;
 }
 
 .hero-title .text-accent {
@@ -1959,8 +1961,9 @@ button, input, textarea {
   }
 
   .hero-title {
-    font-size: clamp(1.85rem, 7.5vw, 2.6rem);
-    line-height: 1.12;
+    font-size: clamp(1.15rem, 5vw, 2.2rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     margin-bottom: 16px;
   }
 
@@ -2289,7 +2292,8 @@ button, input, textarea {
   }
 
   .hero-title {
-    font-size: clamp(1.35rem, 5.8vw, 1.95rem);
+    font-size: clamp(0.95rem, 4.8vw, 1.45rem);
+    letter-spacing: -0.02em;
   }
 
   .stats-grid {
