@@ -32,8 +32,13 @@
   
   <meta name="theme-color" content="#050505">
 
+  <!-- Google Fonts Preconnect (Eliminates CSS render-blocking delays) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=16">
+  <link rel="stylesheet" href="styles.css?v=17">
   <!-- Vercel Web Analytics -->
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -56,7 +61,7 @@
       
       <!-- Brand Logo -->
       <a href="#hero" class="brand-logo-link" aria-label="Z99 Creative Studio Home">
-        <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img">
+        <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img" width="96" height="42">
         <span class="brand-logo-divider" aria-hidden="true"></span>
         <span class="brand-logo-tagline">CREATIVE STUDIO</span>
       </a>
@@ -105,7 +110,7 @@
     <div class="drawer-inner-top">
       <div class="drawer-top-bar">
         <a href="#hero" class="brand-logo-link" aria-label="Z99 Creative Studio Home">
-          <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img">
+          <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img" width="96" height="42">
           <span class="brand-logo-divider" aria-hidden="true"></span>
           <span class="brand-logo-tagline">CREATIVE STUDIO</span>
         </a>
@@ -131,6 +136,11 @@
       <p style="margin-top: 16px; font-size: 0.78rem; color: var(--smoke-gray); text-align: center; letter-spacing: 0.05em;">z99creativestudio@gmail.com</p>
     </div>
   </aside>
+
+  <!-- ==========================================================================
+       MAIN CONTENT LANDMARK
+       ========================================================================== -->
+  <main id="mainContent">
 
   <!-- ==========================================================================
        HERO SECTION
@@ -213,7 +223,7 @@
         <!-- Visual Feature Card -->
         <div class="about-visual-frame">
           <a href="project-abdeen.html" style="display:block; cursor:pointer;">
-            <img src="assets/moodboards/abdeen/3.jpg?v=6" alt="Z99 Abdeen Palace 3D Mapping" class="about-visual-img">
+            <img src="assets/moodboards/abdeen/3.jpg?v=6" alt="Z99 Abdeen Palace 3D Mapping" class="about-visual-img" loading="lazy" decoding="async" width="800" height="520">
           </a>
           <div class="about-visual-tag">
             <div>
@@ -242,7 +252,7 @@
 
       <div class="showreel-container">
         <div class="showreel-frame-wrapper">
-          <img src="assets/showreel-thumbnail.jpg" alt="Z99 Official Showreel" class="showreel-thumbnail">
+          <img src="assets/showreel-thumbnail.jpg" alt="Z99 Official Showreel" class="showreel-thumbnail" loading="lazy" decoding="async" width="1280" height="720">
           <div class="showreel-overlay" data-video-trigger="true">
             <div class="play-button-ring">
               <svg viewBox="0 0 24 24">
@@ -294,7 +304,7 @@
             
             <!-- Slide 1: Architectural 3D Mapping (Abdeen Palace) -->
             <div class="carousel-slide">
-              <img src="assets/moodboards/abdeen/5.jpg" alt="Abdeen Palace 3D Architectural Mapping">
+              <img src="assets/moodboards/abdeen/5.jpg" alt="Abdeen Palace 3D Architectural Mapping" loading="lazy" decoding="async" width="1024" height="640">
               <div class="carousel-slide-caption">
                 <div>
                   <h3 class="slide-heading">Abdeen Palace: Royal Bridal Entrance</h3>
@@ -306,7 +316,7 @@
 
             <!-- Slide 2: Brand Activations (BYD Global) -->
             <div class="carousel-slide">
-              <img src="assets/moodboards/byd/6.jpg" alt="BYD Automotive 3D Reveal">
+              <img src="assets/moodboards/byd/6.jpg" alt="BYD Automotive 3D Reveal" loading="lazy" decoding="async" width="1024" height="576">
               <div class="carousel-slide-caption">
                 <div>
                   <h3 class="slide-heading">BYD: EV Launch &amp; Anamorphic 3D</h3>
@@ -318,7 +328,7 @@
 
             <!-- Slide 3: Stadium Concerts (Live Festivals) -->
             <div class="carousel-slide">
-              <img src="assets/projects/concert-1/14.webp" alt="Stadium Concerts Stage Visuals">
+              <img src="assets/projects/concert-1/14.webp" alt="Stadium Concerts Stage Visuals" loading="lazy" decoding="async" width="1024" height="576">
               <div class="carousel-slide-caption">
                 <div>
                   <h3 class="slide-heading">Festival Stage Visual Engines</h3>
@@ -330,7 +340,7 @@
 
             <!-- Slide 4: Luxury Weddings (Ballroom Transformation) -->
             <div class="carousel-slide">
-              <img src="assets/projects/wedding-8/14.webp" alt="Luxury Wedding Ballroom Mapping">
+              <img src="assets/projects/wedding-8/14.webp" alt="Luxury Wedding Ballroom Mapping" loading="lazy" decoding="async" width="1024" height="575">
               <div class="carousel-slide-caption">
                 <div>
                   <h3 class="slide-heading">360° Ballroom Transformations</h3>
@@ -366,7 +376,7 @@
         <!-- Pillar 1: 3D Projection Mapping (Col 6) -->
         <a href="projection-mapping.html" class="bento-card col-6" data-category="mapping" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
           <div class="card-media-wrapper">
-            <img src="assets/moodboards/abdeen/3.jpg?v=7" alt="3D Projection Mapping on Historic Landmarks" class="card-img">
+            <img src="assets/moodboards/abdeen/3.jpg?v=7" alt="3D Projection Mapping on Historic Landmarks" class="card-img" loading="lazy" decoding="async" width="600" height="340">
           </div>
           <div class="card-body">
             <div>
@@ -384,7 +394,7 @@
         <!-- Pillar 2: Brand Activations (Col 6) -->
         <a href="brand-activations.html" class="bento-card col-6" data-category="corporate" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
           <div class="card-media-wrapper">
-            <img src="assets/moodboards/byd/6.jpg?v=4" alt="Brand Activations and Automotive 3D Reveals" class="card-img">
+            <img src="assets/moodboards/byd/6.jpg?v=4" alt="Brand Activations and Automotive 3D Reveals" class="card-img" loading="lazy" decoding="async" width="600" height="340">
           </div>
           <div class="card-body">
             <div>
@@ -402,7 +412,7 @@
         <!-- Pillar 3: Stadium Concerts & Festivals (Col 6) -->
         <a href="stadium-concerts.html" class="bento-card col-6" data-category="concerts" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
           <div class="card-media-wrapper">
-            <img src="assets/moodboards/concerts/4.jpg?v=4" alt="Festival and Concert Visual Production" class="card-img">
+            <img src="assets/moodboards/concerts/4.jpg?v=4" alt="Festival and Concert Visual Production" class="card-img" loading="lazy" decoding="async" width="600" height="340">
           </div>
           <div class="card-body">
             <div>
@@ -420,7 +430,7 @@
         <!-- Pillar 4: Luxury Weddings (Col 6) -->
         <a href="luxury-weddings.html" class="bento-card col-6" data-category="weddings" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
           <div class="card-media-wrapper">
-            <img src="assets/moodboards/weddings/4.jpg?v=4" alt="Royal Wedding Ballroom Venue Mapping" class="card-img">
+            <img src="assets/moodboards/weddings/4.jpg?v=4" alt="Royal Wedding Ballroom Venue Mapping" class="card-img" loading="lazy" decoding="async" width="600" height="340">
           </div>
           <div class="card-body">
             <div>
@@ -468,7 +478,7 @@
             <span class="pipeline-step-tag">CONCEPT &amp; VISION</span>
           </div>
           <div class="pipeline-img-wrap">
-            <img src="assets/pipeline/step1.webp" alt="01 Concept &amp; Vision: Architectural facade sketches and spatial concept planning" class="pipeline-img" loading="lazy">
+            <img src="assets/pipeline/step1.webp" alt="01 Concept &amp; Vision: Architectural facade sketches and spatial concept planning" class="pipeline-img" loading="lazy" decoding="async" width="600" height="338">
           </div>
           <h3 class="pipeline-title">The Idea</h3>
           <p class="pipeline-text">
@@ -486,7 +496,7 @@
             <span class="pipeline-step-tag">ON-SITE LASER SCAN</span>
           </div>
           <div class="pipeline-img-wrap">
-            <img src="assets/pipeline/step2.webp" alt="02 On-Site Laser Telemetry: Nocturnal facade scanning and sub-millimeter measurements" class="pipeline-img" loading="lazy">
+            <img src="assets/pipeline/step2.webp" alt="02 On-Site Laser Telemetry: Nocturnal facade scanning and sub-millimeter measurements" class="pipeline-img" loading="lazy" decoding="async" width="600" height="338">
           </div>
           <h3 class="pipeline-title">Reading the Building</h3>
           <p class="pipeline-text">
@@ -504,7 +514,7 @@
             <span class="pipeline-step-tag">COMPUTATIONAL 3D MODEL</span>
           </div>
           <div class="pipeline-img-wrap">
-            <img src="assets/pipeline/step3.webp" alt="03 Computational 3D Model: Digital twin wireframe modeling of neoclassical architecture" class="pipeline-img" loading="lazy">
+            <img src="assets/pipeline/step3.webp" alt="03 Computational 3D Model: Digital twin wireframe modeling of neoclassical architecture" class="pipeline-img" loading="lazy" decoding="async" width="600" height="338">
           </div>
           <h3 class="pipeline-title">Rebuilding It in 3D</h3>
           <p class="pipeline-text">
@@ -522,7 +532,7 @@
             <span class="pipeline-step-tag">MOTION &amp; SOUNDTRACK</span>
           </div>
           <div class="pipeline-img-wrap">
-            <img src="assets/pipeline/step4.webp" alt="04 Motion &amp; Soundtrack Choreography: Real-time visual timeline animation synced to orchestral audio" class="pipeline-img" loading="lazy">
+            <img src="assets/pipeline/step4.webp" alt="04 Motion &amp; Soundtrack Choreography: Real-time visual timeline animation synced to orchestral audio" class="pipeline-img" loading="lazy" decoding="async" width="600" height="338">
           </div>
           <h3 class="pipeline-title">Creating the Show</h3>
           <p class="pipeline-text">
@@ -540,7 +550,7 @@
             <span class="pipeline-step-tag">HARDWARE DEPLOYMENT</span>
           </div>
           <div class="pipeline-img-wrap">
-            <img src="assets/pipeline/step5.webp" alt="05 Hardware Deployment: High-lumen projection towers and precision laser grid alignment" class="pipeline-img" loading="lazy">
+            <img src="assets/pipeline/step5.webp" alt="05 Hardware Deployment: High-lumen projection towers and precision laser grid alignment" class="pipeline-img" loading="lazy" decoding="async" width="600" height="338">
           </div>
           <h3 class="pipeline-title">Building the Setup</h3>
           <p class="pipeline-text">
@@ -558,7 +568,7 @@
             <span class="pipeline-step-tag">LIVE MOMENTUM</span>
           </div>
           <div class="pipeline-img-wrap">
-            <img src="assets/pipeline/step6.webp" alt="06 Showtime: Monumental architectural projection mapping spectacle viewed by live audience" class="pipeline-img" loading="lazy">
+            <img src="assets/pipeline/step6.webp" alt="06 Showtime: Monumental architectural projection mapping spectacle viewed by live audience" class="pipeline-img" loading="lazy" decoding="async" width="600" height="338">
           </div>
           <h3 class="pipeline-title">Showtime</h3>
           <p class="pipeline-text">
@@ -594,7 +604,7 @@
               <span class="hub-status-badge">PRIMARY STUDIO HUB</span>
               <span class="hub-country">EGYPT</span>
             </div>
-            <h4 class="hub-title">Cairo &amp; Historic Venues</h4>
+            <h3 class="hub-title">Cairo &amp; Historic Venues</h3>
             <p class="hub-desc">
               Full-scale projection mapping for monumental royal palaces (Abdeen Palace), luxury weddings, and major automotive reveals.
             </p>
@@ -605,7 +615,7 @@
               <span class="hub-status-badge">ACTIVE DEPLOYMENT</span>
               <span class="hub-country">SAUDI ARABIA</span>
             </div>
-            <h4 class="hub-title">Riyadh &amp; Jeddah</h4>
+            <h3 class="hub-title">Riyadh &amp; Jeddah</h3>
             <p class="hub-desc">
               High-impact 3D anamorphic LED screens, corporate conference keynotes, and festival stage visual engineering.
             </p>
@@ -616,7 +626,7 @@
               <span class="hub-status-badge">ACTIVE DEPLOYMENT</span>
               <span class="hub-country">UAE</span>
             </div>
-            <h4 class="hub-title">Dubai &amp; Abu Dhabi</h4>
+            <h3 class="hub-title">Dubai &amp; Abu Dhabi</h3>
             <p class="hub-desc">
               Luxury private gala transformations, architectural media facades, and immersive experiential activations.
             </p>
@@ -627,7 +637,7 @@
               <span class="hub-status-badge">ON DEMAND</span>
               <span class="hub-country">GLOBAL DEPLOYMENT</span>
             </div>
-            <h4 class="hub-title">International Deployments</h4>
+            <h3 class="hub-title">International Deployments</h3>
             <p class="hub-desc">
               Mobile technical logistics, hardware integration, and on-site projection calibration worldwide.
             </p>
@@ -753,6 +763,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- ==========================================================================
        FOOTER
@@ -762,7 +773,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="brand-logo-link" aria-label="Z99 Creative Studio Home" style="margin-bottom: 14px;">
-            <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img" style="height: 42px;">
+            <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img" style="height: 42px;" width="96" height="42">
             <span class="brand-logo-divider" aria-hidden="true"></span>
             <span class="brand-logo-tagline">CREATIVE STUDIO</span>
           </a>

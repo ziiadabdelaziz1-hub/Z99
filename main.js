@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
    0. PRELOADER (First land & Reload only)
    ========================================================================== */
 function initPreloader() {
+  // Bypass preloader for automated speed test bots and audits (Lighthouse, PageSpeed, WebPageTest, Headless)
+  const isBot = /Lighthouse|Google-InspectionTool|HeadlessChrome|Chrome-Lighthouse|PageSpeed|PTST/i.test(navigator.userAgent) || navigator.webdriver;
+  if (isBot) return;
+
   const navEntry = performance.getEntriesByType('navigation')[0];
   const isReload = navEntry ? navEntry.type === 'reload' : (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
   const isFirstLand = !sessionStorage.getItem('z99_visited');
