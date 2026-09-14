@@ -32,11 +32,30 @@
       background-color: var(--bg-dark);
       color: var(--pure-white);
       font-family: var(--font-main);
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
+      overflow-x: hidden;
+      overflow-y: auto;
+      min-height: 100vh;
       user-select: none;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* Custom sleek dark scrollbar */
+    body::-webkit-scrollbar,
+    .slides-viewport::-webkit-scrollbar {
+      width: 6px;
+    }
+    body::-webkit-scrollbar-track,
+    .slides-viewport::-webkit-scrollbar-track {
+      background: #050505;
+    }
+    body::-webkit-scrollbar-thumb,
+    .slides-viewport::-webkit-scrollbar-thumb {
+      background: rgba(215, 255, 63, 0.3);
+      border-radius: 4px;
+    }
+    body::-webkit-scrollbar-thumb:hover,
+    .slides-viewport::-webkit-scrollbar-thumb:hover {
+      background: var(--neon-lime);
     }
 
     /* Ambient Background Glows */
@@ -58,14 +77,14 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 72px;
-      padding: 0 40px;
+      height: 68px;
+      padding: 0 36px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--card-border);
-      background: rgba(5, 5, 5, 0.85);
-      backdrop-filter: blur(16px);
+      background: rgba(5, 5, 5, 0.9);
+      backdrop-filter: blur(18px);
       z-index: 100;
     }
 
@@ -130,37 +149,40 @@
       letter-spacing: 0.05em;
     }
 
-    /* Slide Deck Container */
+    /* Slide Deck Container - Smooth Scrollable with Ample Clearance */
     .slides-viewport {
       position: relative;
       width: 100vw;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 95px 40px 85px;
+      justify-content: flex-start;
+      padding-top: 86px;
+      padding-bottom: 110px; /* Crucial: Guarantees content never collides with fixed bottom bar */
+      padding-left: 36px;
+      padding-right: 36px;
       z-index: 1;
     }
 
     .slide {
-      position: absolute;
-      width: 92%;
-      max-width: 1280px;
+      display: none;
+      width: 94%;
+      max-width: 1300px;
       opacity: 0;
-      visibility: hidden;
-      transform: translateY(24px) scale(0.98);
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                  visibility 0.4s;
-      display: flex;
+      transform: translateY(16px);
+      transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
       flex-direction: column;
       justify-content: center;
+      margin: auto 0; /* Centers vertically when content is short, flows naturally when tall */
+      padding: 12px 0 24px;
     }
 
     .slide.active {
+      display: flex;
       opacity: 1;
-      visibility: visible;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
 
     /* Typography & Badges */
@@ -569,9 +591,71 @@
       transition: background 0.2s, color 0.2s;
     }
 
-    .index-item:hover, .index-item.active {
-      background: rgba(215, 255, 63, 0.1);
-      color: var(--neon-lime);
+    /* Responsive Compact Mode for Laptop Screens (Height < 850px) */
+    @media (max-height: 850px) {
+      .deck-header {
+        height: 60px;
+        padding: 0 24px;
+      }
+      .deck-footer {
+        height: 60px;
+        padding: 0 24px;
+      }
+      .slides-viewport {
+        padding-top: 72px;
+        padding-bottom: 90px;
+      }
+      .slide-badge {
+        margin-bottom: 6px;
+        font-size: 0.7rem;
+      }
+      .slide-title {
+        font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+        margin-bottom: 8px;
+      }
+      .slide-subtitle {
+        font-size: 0.86rem;
+        margin-bottom: 16px;
+        line-height: 1.45;
+      }
+      .deck-grid {
+        gap: 12px;
+      }
+      .deck-card {
+        padding: 16px 14px;
+      }
+      .card-icon {
+        font-size: 1.25rem;
+        margin-bottom: 6px;
+      }
+      .card-title {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+      }
+      .card-desc {
+        font-size: 0.8rem;
+        line-height: 1.45;
+      }
+      .card-tag {
+        padding-top: 10px;
+        font-size: 0.68rem;
+      }
+      .arch-tier-header {
+        padding: 10px 14px;
+      }
+      .arch-tier-body {
+        padding: 10px 14px;
+        gap: 10px;
+      }
+      .journey-step {
+        padding: 14px 12px;
+      }
+      .journey-title {
+        font-size: 0.88rem;
+      }
+      .journey-desc {
+        font-size: 0.78rem;
+      }
     }
 
     /* Print Stylesheet (Clean PDF Export) */
@@ -816,9 +900,9 @@
           <div class="card-icon">⚡</div>
           <div class="card-title">Core Frontend</div>
           <div class="card-desc">
-            • <strong>Semantic HTML5:</strong> Clean, accessible structure across 19 pages + 404.<br><br>
-            • <strong>Vanilla CSS3:</strong> Custom token design system, responsive clamps, CSS Bento grid.<br><br>
-            • <strong>Vanilla JS (ES6+):</strong> 0KB framework penalty (No React/Vue overhead).
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">Semantic HTML5:</strong> 19 clean pages + 404 error page.</div>
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">Vanilla CSS3:</strong> Custom tokens &amp; responsive clamps.</div>
+            <div>• <strong style="color: #fff;">Vanilla JS (ES6+):</strong> 0KB framework penalty (No React/Vue lag).</div>
           </div>
           <div class="card-tag">0ms Native Execution</div>
         </div>
@@ -828,10 +912,10 @@
           <div class="card-icon">🎨</div>
           <div class="card-title">Visuals &amp; Media</div>
           <div class="card-desc">
-            • <strong>Canvas 2D API:</strong> Interactive 60FPS cyber laser particle mesh.<br><br>
-            • <strong>YouTube 4K API:</strong> Non-blocking async video overlay engine.<br><br>
-            • <strong>Vector SVGs:</strong> Handcrafted UI icons with infinite retina scaling.<br><br>
-            • <strong>WebP/JPEG Assets:</strong> 1-Year immutable browser disk caching.
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">Canvas 2D API:</strong> Interactive 60FPS cyber laser mesh.</div>
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">YouTube 4K API:</strong> Non-blocking async video overlay.</div>
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">Vector SVGs:</strong> Handcrafted retina-sharp vector icons.</div>
+            <div>• <strong style="color: #fff;">WebP/JPEG:</strong> 1-Year immutable disk caching.</div>
           </div>
           <div class="card-tag">Retina 4K Graphics</div>
         </div>
@@ -841,10 +925,10 @@
           <div class="card-icon">☁️</div>
           <div class="card-title">Edge Infrastructure</div>
           <div class="card-desc">
-            • <strong>Vercel Edge Network:</strong> Global Anycast CDN in 100+ cities worldwide.<br><br>
-            • <strong>Hostinger LiteSpeed:</strong> Complete .htaccess Apache rewrite compatibility.<br><br>
-            • <strong>TLS 1.3 Encryption:</strong> Automated DigiCert / Let's Encrypt certificates.<br><br>
-            • <strong>Git Pipeline:</strong> Synchronized production &amp; staging branches.
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">Vercel Edge Network:</strong> Global Anycast in 100+ cities.</div>
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">Hostinger Apache:</strong> Full .htaccess rewrite support.</div>
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">TLS 1.3 Encryption:</strong> Automated SSL certificates.</div>
+            <div>• <strong style="color: #fff;">Git Pipeline:</strong> Synchronized production &amp; staging.</div>
           </div>
           <div class="card-tag">Sub-50ms Global TTFB</div>
         </div>
@@ -854,10 +938,10 @@
           <div class="card-icon">🛡️</div>
           <div class="card-title">Security &amp; Growth</div>
           <div class="card-desc">
-            • <strong>A+ Security Headers:</strong> CSP, HSTS Preload, X-Frame-Options, noopener.<br><br>
-            • <strong>Clean XML Sitemap:</strong> Zero-redirect canonical indexing for Google.<br><br>
-            • <strong>Open Graph 4K:</strong> 1200x630 rich cards for WhatsApp &amp; LinkedIn.<br><br>
-            • <strong>Vercel Web Analytics:</strong> Cookie-free, privacy-compliant tracking.
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">A+ Security Headers:</strong> CSP, HSTS, X-Frame, noopener.</div>
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">Clean XML Sitemap:</strong> Zero-redirect Google indexing.</div>
+            <div style="margin-bottom: 8px;">• <strong style="color: #fff;">Open Graph 4K:</strong> 1200x630 rich share cards.</div>
+            <div>• <strong style="color: #fff;">Web Analytics:</strong> Privacy-compliant, cookie-free telemetry.</div>
           </div>
           <div class="card-tag">Bank-Grade Compliance</div>
         </div>
@@ -1131,6 +1215,8 @@
 
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === totalSlides - 1;
+
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
     function goToSlide(index) {
