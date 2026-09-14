@@ -289,80 +289,196 @@
     }
 
     /* ==========================================================================
-       ARCHITECTURE BLUEPRINT STYLES (Slide 4)
+       ARCHITECTURE BLUEPRINT & FLOW DIAGRAM (Slide 4)
        ========================================================================== */
-    .arch-stack {
+    .arch-diagram-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
       width: 100%;
     }
 
-    .arch-tier {
+    .arch-pipeline {
       display: grid;
-      grid-template-columns: 200px 1fr;
-      background: rgba(18, 18, 18, 0.7);
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+      align-items: stretch;
+      background: rgba(14, 14, 14, 0.75);
       border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 18px 16px;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .arch-node {
+      background: rgba(22, 22, 22, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 10px;
-      overflow: hidden;
-      transition: border-color 0.2s;
-    }
-
-    .arch-tier:hover {
-      border-color: rgba(215, 255, 63, 0.35);
-    }
-
-    .arch-tier-header {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 16px 20px;
+      padding: 14px 12px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      border-right: 1px solid var(--card-border);
+      position: relative;
+      transition: all 0.25s ease;
+      min-height: 190px;
     }
 
-    .arch-tier-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--neon-lime);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 4px;
+    .arch-node:hover {
+      border-color: var(--neon-lime);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(215, 255, 63, 0.12);
     }
 
-    .arch-tier-name {
-      font-size: 0.98rem;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .arch-tier-body {
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .arch-chip {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 0.82rem;
+    .arch-node-header {
       display: flex;
       align-items: center;
       gap: 8px;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .arch-chip strong {
+    .arch-node-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .arch-node-tier {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 700;
+      color: var(--neon-lime);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .arch-node-title {
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+    }
+
+    .arch-node-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex-grow: 1;
+    }
+
+    .arch-node-list li {
+      font-size: 0.72rem;
+      color: var(--smoke-gray);
+      line-height: 1.35;
+      position: relative;
+      padding-left: 10px;
+    }
+
+    .arch-node-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--neon-lime);
+      font-size: 0.75rem;
+    }
+
+    .arch-node-badge {
+      margin-top: auto;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(215, 255, 63, 0.08);
+      color: var(--neon-lime);
+      border: 1px solid rgba(215, 255, 63, 0.25);
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    .arch-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+      gap: 4px;
+    }
+
+    .arch-arrow-line {
+      width: 18px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(215, 255, 63, 0.3), var(--neon-lime));
+      position: relative;
+    }
+
+    .arch-arrow-line::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: -3px;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid var(--neon-lime);
+    }
+
+    .arch-arrow-protocol {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    /* 3-Column Technical Pillars */
+    .arch-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .arch-pillar {
+      background: rgba(18, 18, 18, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color 0.2s;
+    }
+
+    .arch-pillar:hover {
+      border-color: rgba(215, 255, 63, 0.3);
+    }
+
+    .arch-pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      font-weight: 700;
       color: #fff;
     }
 
-    .arch-chip span {
+    .arch-pillar-desc {
+      font-size: 0.76rem;
       color: var(--smoke-gray);
-      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .arch-pillar-metrics {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--neon-lime);
+      font-weight: 600;
+      margin-top: 4px;
     }
 
     /* ==========================================================================
@@ -640,12 +756,18 @@
         padding-top: 10px;
         font-size: 0.68rem;
       }
-      .arch-tier-header {
-        padding: 10px 14px;
+      .arch-node {
+        min-height: 160px;
+        padding: 10px 8px;
       }
-      .arch-tier-body {
-        padding: 10px 14px;
-        gap: 10px;
+      .arch-node-title {
+        font-size: 0.78rem;
+      }
+      .arch-node-list li {
+        font-size: 0.68rem;
+      }
+      .arch-pillar {
+        padding: 10px 12px;
       }
       .journey-step {
         padding: 14px 12px;
@@ -653,6 +775,22 @@
       .journey-title {
         font-size: 0.88rem;
       }
+    }
+
+    @media (max-width: 1080px) {
+      .arch-pipeline {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .arch-arrow {
+        transform: rotate(90deg);
+        padding: 6px 0;
+      }
+      .arch-pillars {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* Audit & Performance Verification Slide */
     .audit-grid {
       display: grid;
@@ -1005,66 +1143,157 @@
       </div>
     </section>
 
-    <!-- SLIDE 4: PROJECT ARCHITECTURE (NEW) -->
+    <!-- SLIDE 4: PROJECT ARCHITECTURE -->
     <section class="slide" data-slide="4">
       <div class="slide-badge">System Design // Technical Blueprint</div>
       <h1 class="slide-title">Project <span>Architecture Blueprint</span></h1>
       <p class="slide-subtitle">
-        A high-reliability 4-tier static edge architecture engineered for zero maintenance, maximum security, and sub-second load times worldwide.
+        An enterprise-grade 5-tier static edge architecture engineered for zero server maintenance, A+ security compliance, and instant sub-second page loads worldwide.
       </p>
 
-      <div class="arch-stack">
-        <!-- Tier 1 -->
-        <div class="arch-tier">
-          <div class="arch-tier-header">
-            <span class="arch-tier-label">Tier 1</span>
-            <div class="arch-tier-name">Cloud Edge CDN</div>
+      <div class="arch-diagram-wrapper">
+        <!-- 5-Node Architecture Flow Pipeline -->
+        <div class="arch-pipeline">
+          <!-- Node 1: Client Ingress -->
+          <div class="arch-node">
+            <div class="arch-node-header">
+              <span class="arch-node-icon">🌐</span>
+              <div>
+                <div class="arch-node-tier">Tier 01</div>
+                <div class="arch-node-title">Client Ingress</div>
+              </div>
+            </div>
+            <ul class="arch-node-list">
+              <li>Mobile iOS Safari &amp; Android</li>
+              <li>Desktop Chrome, WebKit, Edge</li>
+              <li>Googlebot &amp; Social Crawlers</li>
+            </ul>
+            <div class="arch-node-badge">HTTPS / TLS 1.3</div>
           </div>
-          <div class="arch-tier-body">
-            <div class="arch-chip"><strong>Vercel Edge Network</strong> <span>Global Anycast CDN (100+ cities)</span></div>
-            <div class="arch-chip"><strong>Hostinger Apache / LiteSpeed</strong> <span>.htaccess fallback compatibility</span></div>
-            <div class="arch-chip"><strong>Automatic SSL / TLS 1.3</strong> <span>Let's Encrypt / DigiCert Certs</span></div>
+
+          <!-- Flow Arrow 1 -->
+          <div class="arch-arrow">
+            <div class="arch-arrow-line"></div>
+            <span class="arch-arrow-protocol">DNS Anycast</span>
+          </div>
+
+          <!-- Node 2: Edge CDN Gateway -->
+          <div class="arch-node">
+            <div class="arch-node-header">
+              <span class="arch-node-icon">⚡</span>
+              <div>
+                <div class="arch-node-tier">Tier 02</div>
+                <div class="arch-node-title">Edge CDN &amp; Routing</div>
+              </div>
+            </div>
+            <ul class="arch-node-list">
+              <li>Vercel Edge Global Anycast (100+ PoPs)</li>
+              <li>Hostinger LiteSpeed Fallback</li>
+              <li>Clean URL Rewrite Engine</li>
+            </ul>
+            <div class="arch-node-badge">HTTP/2 + Brotli</div>
+          </div>
+
+          <!-- Flow Arrow 2 -->
+          <div class="arch-arrow">
+            <div class="arch-arrow-line"></div>
+            <span class="arch-arrow-protocol">Hardened Hdr</span>
+          </div>
+
+          <!-- Node 3: Security Policy Shield -->
+          <div class="arch-node">
+            <div class="arch-node-header">
+              <span class="arch-node-icon">🛡️</span>
+              <div>
+                <div class="arch-node-tier">Tier 03</div>
+                <div class="arch-node-title">Security Shield</div>
+              </div>
+            </div>
+            <ul class="arch-node-list">
+              <li>CSP: Zero 'unsafe-inline'</li>
+              <li>HSTS Preload (2-Year Max-Age)</li>
+              <li>Clickjacking SAMEORIGIN Guard</li>
+            </ul>
+            <div class="arch-node-badge">SecurityHeaders A+</div>
+          </div>
+
+          <!-- Flow Arrow 3 -->
+          <div class="arch-arrow">
+            <div class="arch-arrow-line"></div>
+            <span class="arch-arrow-protocol">0ms Origin</span>
+          </div>
+
+          <!-- Node 4: Core Static Engine -->
+          <div class="arch-node">
+            <div class="arch-node-header">
+              <span class="arch-node-icon">⚙️</span>
+              <div>
+                <div class="arch-node-tier">Tier 04</div>
+                <div class="arch-node-title">Static App Core</div>
+              </div>
+            </div>
+            <ul class="arch-node-list">
+              <li>19 Semantic HTML5 Pages</li>
+              <li>Modular CSS3 Luxury Design Tokens</li>
+              <li>Pure Vanilla JS (0ms TBT)</li>
+            </ul>
+            <div class="arch-node-badge">Lighthouse 98/100</div>
+          </div>
+
+          <!-- Flow Arrow 4 -->
+          <div class="arch-arrow">
+            <div class="arch-arrow-line"></div>
+            <span class="arch-arrow-protocol">Async Hook</span>
+          </div>
+
+          <!-- Node 5: External Services & Conversion -->
+          <div class="arch-node">
+            <div class="arch-node-header">
+              <span class="arch-node-icon">🚀</span>
+              <div>
+                <div class="arch-node-tier">Tier 05</div>
+                <div class="arch-node-title">Integrations</div>
+              </div>
+            </div>
+            <ul class="arch-node-list">
+              <li>WhatsApp Direct Booking API</li>
+              <li>Deferred YouTube 4K Lightbox</li>
+              <li>Cookie-Free Web Analytics</li>
+            </ul>
+            <div class="arch-node-badge">Direct Leads</div>
           </div>
         </div>
 
-        <!-- Tier 2 -->
-        <div class="arch-tier">
-          <div class="arch-tier-header">
-            <span class="arch-tier-label">Tier 2</span>
-            <div class="arch-tier-name">Security &amp; Routing</div>
+        <!-- 3-Column Technical Pillars -->
+        <div class="arch-pillars">
+          <div class="arch-pillar">
+            <div class="arch-pillar-header">
+              <span>⚡</span> <strong>Sub-Second Edge Delivery</strong>
+            </div>
+            <p class="arch-pillar-desc">
+              100% pre-compiled static assets served directly from Edge memory caches with 1-Year immutable headers (`max-age=31536000`). Zero server cold starts.
+            </p>
+            <div class="arch-pillar-metrics">LCP: 1.5s // TTFB: &lt;45ms // TBT: 0ms</div>
           </div>
-          <div class="arch-tier-body">
-            <div class="arch-chip"><strong>Clean URL Router</strong> <span>Eliminates .html extensions automatically</span></div>
-            <div class="arch-chip"><strong>HSTS 2-Yr Preload</strong> <span>Forces encrypted HTTPS on all connections</span></div>
-            <div class="arch-chip"><strong>CSP &amp; Clickjacking Shield</strong> <span>X-Frame-Options + Content-Security-Policy</span></div>
-            <div class="arch-chip"><strong>Reverse Tabnabbing Guard</strong> <span>rel="noopener noreferrer" across all external links</span></div>
-          </div>
-        </div>
 
-        <!-- Tier 3 -->
-        <div class="arch-tier">
-          <div class="arch-tier-header">
-            <span class="arch-tier-label">Tier 3</span>
-            <div class="arch-tier-name">Core Application</div>
+          <div class="arch-pillar">
+            <div class="arch-pillar-header">
+              <span>🛡️</span> <strong>Enterprise Zero-Trust Defense</strong>
+            </div>
+            <p class="arch-pillar-desc">
+              Eliminated all inline execution vectors for an ironclad Content-Security-Policy. Enforces strict HSTS encryption and reverse tabnabbing defense.
+            </p>
+            <div class="arch-pillar-metrics">SecurityHeaders: Grade A+ Verified</div>
           </div>
-          <div class="arch-tier-body">
-            <div class="arch-chip"><strong>Semantic HTML5</strong> <span>19 Production Pages + Custom 404 Error Handler</span></div>
-            <div class="arch-chip"><strong>Modular Vanilla CSS3</strong> <span>Design tokens, CSS grid bento, and fluid clamps</span></div>
-            <div class="arch-chip"><strong>Core JS Engine</strong> <span>Zero framework bloat (No bulky React/Vue runtimes)</span></div>
-          </div>
-        </div>
 
-        <!-- Tier 4 -->
-        <div class="arch-tier">
-          <div class="arch-tier-header">
-            <span class="arch-tier-label">Tier 4</span>
-            <div class="arch-tier-name">Integration &amp; Assets</div>
-          </div>
-          <div class="arch-tier-body">
-            <div class="arch-chip"><strong>Dynamic WhatsApp Engine</strong> <span>Client-side URL encoding for 1-click booking</span></div>
-            <div class="arch-chip"><strong>YouTube 4K Modal</strong> <span>Async iframe overlay without page reflow</span></div>
-            <div class="arch-chip"><strong>1-Year Disk Caching</strong> <span>Immutable Cache-Control headers for all assets</span></div>
-            <div class="arch-chip"><strong>Vercel Web Analytics</strong> <span>Privacy-first, cookie-free visitor analytics</span></div>
+          <div class="arch-pillar">
+            <div class="arch-pillar-header">
+              <span>🔄</span> <strong>Dual-Platform Portability</strong>
+            </div>
+            <p class="arch-pillar-desc">
+              Zero vendor lock-in. Full native compatibility with Vercel Edge Anycast and turnkey Hostinger LiteSpeed/Apache `.htaccess` fallback environments.
+            </p>
+            <div class="arch-pillar-metrics">Vercel Anycast + Hostinger Ready</div>
           </div>
         </div>
       </div>
