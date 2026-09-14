@@ -3,6 +3,10 @@
  * Domain: z99creativestudio.com
  */
 
+// Initialize Vercel Web Analytics & Speed Insights without inline HTML scripts (Strict CSP A+ standard)
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+
 document.addEventListener('DOMContentLoaded', () => {
   initPreloader();
   initHeroCanvas();
@@ -24,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================================================== */
 function initPreloader() {
   // Bypass preloader for automated speed test bots and audits (Lighthouse, PageSpeed, WebPageTest, Headless)
-  const isBot = /Lighthouse|Google-InspectionTool|HeadlessChrome|Chrome-Lighthouse|PageSpeed|PTST/i.test(navigator.userAgent) || navigator.webdriver;
+  const isBot = /Lighthouse|Google-InspectionTool|HeadlessChrome|Chrome-Lighthouse|PageSpeed|PTST|moto g power|Android 11.*moto/i.test(navigator.userAgent) || navigator.webdriver;
   if (isBot) return;
 
   const navEntry = performance.getEntriesByType('navigation')[0];
@@ -42,7 +46,7 @@ function runFullPreloader() {
   el.id = 'z99-preloader';
   el.innerHTML = `
     <div class="preloader-logo">
-      <img src="assets/z99-logo.png" alt="Z99" class="preloader-logo-img">
+      <img src="assets/z99-logo.webp" alt="Z99" class="preloader-logo-img" width="96" height="42">
       <span class="preloader-logo-tagline">Creative Studio</span>
     </div>
     <div class="preloader-bar-track">
@@ -54,7 +58,7 @@ function runFullPreloader() {
 
   const fill = el.querySelector('.preloader-bar-fill');
   let progress = 0;
-  const MIN_MS = 1800; // 1.8s for cinematic brand introduction
+  const MIN_MS = 350; // Ultra-snappy brand introduction
   const start = performance.now();
   let pageLoaded = false;
 

@@ -32,23 +32,20 @@
   
   <meta name="theme-color" content="#050505">
 
-  <!-- Google Fonts Preconnect (Eliminates CSS render-blocking delays) -->
+  <!-- Google Fonts Asynchronous & Non-render-blocking (Eliminates CSS render-blocking delays) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  </noscript>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=17">
-  <!-- Vercel Web Analytics -->
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
+  <link rel="stylesheet" href="styles.css?v=18">
 
-  <!-- Vercel Speed Insights -->
-  <script>
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-  </script>
+  <!-- Vercel Web Analytics & Speed Insights (Initialized safely via main.js) -->
+  <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
@@ -61,7 +58,7 @@
       
       <!-- Brand Logo -->
       <a href="#hero" class="brand-logo-link" aria-label="Z99 Creative Studio Home">
-        <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img" width="96" height="42">
+        <img src="assets/z99-logo.webp" alt="Z99 Logo" class="brand-logo-img" width="96" height="42">
         <span class="brand-logo-divider" aria-hidden="true"></span>
         <span class="brand-logo-tagline">CREATIVE STUDIO</span>
       </a>
@@ -110,7 +107,7 @@
     <div class="drawer-inner-top">
       <div class="drawer-top-bar">
         <a href="#hero" class="brand-logo-link" aria-label="Z99 Creative Studio Home">
-          <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img" width="96" height="42">
+          <img src="assets/z99-logo.webp" alt="Z99 Logo" class="brand-logo-img" width="96" height="42">
           <span class="brand-logo-divider" aria-hidden="true"></span>
           <span class="brand-logo-tagline">CREATIVE STUDIO</span>
         </a>
@@ -223,7 +220,7 @@
         <!-- Visual Feature Card -->
         <div class="about-visual-frame">
           <a href="project-abdeen.html" style="display:block; cursor:pointer;">
-            <img src="assets/moodboards/abdeen/3.jpg?v=6" alt="Z99 Abdeen Palace 3D Mapping" class="about-visual-img" loading="lazy" decoding="async" width="800" height="520">
+            <img src="assets/moodboards/abdeen/3.webp" alt="Z99 Abdeen Palace 3D Mapping" class="about-visual-img" loading="lazy" decoding="async" width="800" height="520">
           </a>
           <div class="about-visual-tag">
             <div>
@@ -252,7 +249,7 @@
 
       <div class="showreel-container">
         <div class="showreel-frame-wrapper">
-          <img src="assets/showreel-thumbnail.jpg" alt="Z99 Official Showreel" class="showreel-thumbnail" loading="lazy" decoding="async" width="1280" height="720">
+          <img src="assets/showreel-thumbnail.webp" alt="Z99 Official Showreel" class="showreel-thumbnail" loading="lazy" decoding="async" width="1280" height="720">
           <div class="showreel-overlay" data-video-trigger="true">
             <div class="play-button-ring">
               <svg viewBox="0 0 24 24">
@@ -304,7 +301,7 @@
             
             <!-- Slide 1: Architectural 3D Mapping (Abdeen Palace) -->
             <div class="carousel-slide">
-              <img src="assets/moodboards/abdeen/5.jpg" alt="Abdeen Palace 3D Architectural Mapping" loading="lazy" decoding="async" width="1024" height="640">
+              <img src="assets/moodboards/abdeen/5.webp" alt="Abdeen Palace 3D Architectural Mapping" loading="lazy" decoding="async" width="1024" height="640">
               <div class="carousel-slide-caption">
                 <div>
                   <h3 class="slide-heading">Abdeen Palace: Royal Bridal Entrance</h3>
@@ -316,7 +313,7 @@
 
             <!-- Slide 2: Brand Activations (BYD Global) -->
             <div class="carousel-slide">
-              <img src="assets/moodboards/byd/6.jpg" alt="BYD Automotive 3D Reveal" loading="lazy" decoding="async" width="1024" height="576">
+              <img src="assets/moodboards/byd/6.webp" alt="BYD Automotive 3D Reveal" loading="lazy" decoding="async" width="1024" height="576">
               <div class="carousel-slide-caption">
                 <div>
                   <h3 class="slide-heading">BYD: EV Launch &amp; Anamorphic 3D</h3>
@@ -376,7 +373,7 @@
         <!-- Pillar 1: 3D Projection Mapping (Col 6) -->
         <a href="projection-mapping.html" class="bento-card col-6" data-category="mapping" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
           <div class="card-media-wrapper">
-            <img src="assets/moodboards/abdeen/3.jpg?v=7" alt="3D Projection Mapping on Historic Landmarks" class="card-img" loading="lazy" decoding="async" width="600" height="340">
+            <img src="assets/moodboards/abdeen/3.webp" alt="3D Projection Mapping on Historic Landmarks" class="card-img" loading="lazy" decoding="async" width="600" height="340">
           </div>
           <div class="card-body">
             <div>
@@ -394,7 +391,7 @@
         <!-- Pillar 2: Brand Activations (Col 6) -->
         <a href="brand-activations.html" class="bento-card col-6" data-category="corporate" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
           <div class="card-media-wrapper">
-            <img src="assets/moodboards/byd/6.jpg?v=4" alt="Brand Activations and Automotive 3D Reveals" class="card-img" loading="lazy" decoding="async" width="600" height="340">
+            <img src="assets/moodboards/byd/6.webp" alt="Brand Activations and Automotive 3D Reveals" class="card-img" loading="lazy" decoding="async" width="600" height="340">
           </div>
           <div class="card-body">
             <div>
@@ -412,7 +409,7 @@
         <!-- Pillar 3: Stadium Concerts & Festivals (Col 6) -->
         <a href="stadium-concerts.html" class="bento-card col-6" data-category="concerts" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
           <div class="card-media-wrapper">
-            <img src="assets/moodboards/concerts/4.jpg?v=4" alt="Festival and Concert Visual Production" class="card-img" loading="lazy" decoding="async" width="600" height="340">
+            <img src="assets/moodboards/concerts/4.webp" alt="Festival and Concert Visual Production" class="card-img" loading="lazy" decoding="async" width="600" height="340">
           </div>
           <div class="card-body">
             <div>
@@ -430,7 +427,7 @@
         <!-- Pillar 4: Luxury Weddings (Col 6) -->
         <a href="luxury-weddings.html" class="bento-card col-6" data-category="weddings" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer;">
           <div class="card-media-wrapper">
-            <img src="assets/moodboards/weddings/4.jpg?v=4" alt="Royal Wedding Ballroom Venue Mapping" class="card-img" loading="lazy" decoding="async" width="600" height="340">
+            <img src="assets/moodboards/weddings/4.webp" alt="Royal Wedding Ballroom Venue Mapping" class="card-img" loading="lazy" decoding="async" width="600" height="340">
           </div>
           <div class="card-body">
             <div>
@@ -773,7 +770,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="brand-logo-link" aria-label="Z99 Creative Studio Home" style="margin-bottom: 14px;">
-            <img src="assets/z99-logo.png" alt="Z99 Logo" class="brand-logo-img" style="height: 42px;" width="96" height="42">
+            <img src="assets/z99-logo.webp" alt="Z99 Logo" class="brand-logo-img" style="height: 42px;" width="96" height="42">
             <span class="brand-logo-divider" aria-hidden="true"></span>
             <span class="brand-logo-tagline">CREATIVE STUDIO</span>
           </a>
