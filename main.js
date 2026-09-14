@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCustomSelect();
   initIframeCursorOverlay();
   initCategoryPillsScroll();
+  initInstantNavigation();
 });
 
 /* ==========================================================================
@@ -958,3 +959,54 @@ function initIframeCursorOverlay() {
   });
   observer.observe(document.body, { childList: true, subtree: true });
 }
+
+/* ==========================================================================
+   14. INSTANT NAVIGATION & INTELLIGENT PREFETCH (Zero Mobile Click Delay)
+   ========================================================================== */
+function initInstantNavigation() {
+  // 1. Enable instantaneous :active touch feedback on iOS WebKit
+  document.addEventListener('touchstart', () => {}, { passive: true });
+
+  // 2. Intelligent background prefetching for internal links on touchstart & hover
+  const prefetchedUrls = new Set();
+
+  function prefetchUrl(url) {
+    if (!url || prefetchedUrls.has(url)) return;
+    // Exclude anchors, protocols, and external targets
+    if (
+      url.startsWith('#') ||
+      url.startsWith('mailto:') ||
+      url.startsWith('tel:') ||
+      url.startsWith('javascript:') ||
+      url.includes('wa.me') ||
+      url.startsWith('http://') ||
+      url.startsWith('https://')
+    ) {
+      return;
+    }
+
+    prefetchedUrls.add(url);
+
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = url;
+    document.head.appendChild(link);
+  }
+
+  // Touchstart prefetching: fires 70-150ms before click, eliminating navigation wait
+  document.addEventListener('touchstart', (e) => {
+    const a = e.target.closest('a[href]');
+    if (a) {
+      prefetchUrl(a.getAttribute('href'));
+    }
+  }, { passive: true });
+
+  // Hover prefetching for desktop users
+  document.addEventListener('mouseover', (e) => {
+    const a = e.target.closest('a[href]');
+    if (a) {
+      prefetchUrl(a.getAttribute('href'));
+    }
+  }, { passive: true });
+}
+

@@ -103,6 +103,28 @@ a, button, input, textarea, select,
   outline-offset: 2px;
 }
 
+/* Eliminate 300ms mobile tap delay across all interactive elements */
+html, body, a, button, [role="button"],
+.btn, .filter-btn, .case-cat-pill, .country-pill,
+.nav-link, .bento-card, .project-card, .hero-badge,
+.modal-close-btn, .floating-whatsapp, .menu-toggle {
+  touch-action: manipulation;
+}
+
+/* Instant tactile feedback on tap/press (Zero sluggishness feeling) */
+.btn:active,
+.filter-btn:active,
+.case-cat-pill:active,
+.country-pill:active,
+.nav-link:active,
+.bento-card:active,
+.modal-close-btn:active,
+a.btn:active {
+  transform: scale(0.96) !important;
+  opacity: 0.88;
+  transition: transform 0.05s ease, opacity 0.05s ease !important;
+}
+
 /* On mobile touch devices: prevent accidental text selection while dragging or scrolling */
 @media (hover: none) and (pointer: coarse) {
   body {
