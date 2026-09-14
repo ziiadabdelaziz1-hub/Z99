@@ -892,18 +892,18 @@
   <!-- Slide Index Drawer -->
   <aside class="index-drawer" id="indexDrawer">
     <div class="index-title">Table of Contents</div>
-    <div class="index-item active" onclick="goToSlide(0)">01. Title &amp; Executive Vision</div>
-    <div class="index-item" onclick="goToSlide(1)">02. Cyber-Luxury Visual Engine</div>
-    <div class="index-item" onclick="goToSlide(2)">03. 4 Disciplines &amp; 14 Case Studies</div>
-    <div class="index-item" onclick="goToSlide(3)">04. Project System Architecture</div>
-    <div class="index-item" onclick="goToSlide(4)">05. Modern Technology Stack</div>
-    <div class="index-item" onclick="goToSlide(5)">06. End-to-End User Journey</div>
-    <div class="index-item" onclick="goToSlide(6)">07. Zero-Friction Booking Pipeline</div>
-    <div class="index-item" onclick="goToSlide(7)">08. Enterprise Security (A+ Grade)</div>
-    <div class="index-item" onclick="goToSlide(8)">09. SEO &amp; Social Share Cards</div>
-    <div class="index-item" onclick="goToSlide(9)">10. Core Web Vitals &amp; Audit Benchmark</div>
-    <div class="index-item" onclick="goToSlide(10)">11. Dual Cloud Hosting Readiness</div>
-    <div class="index-item" onclick="goToSlide(11)">12. Delivery Sign-Off &amp; Handover</div>
+    <div class="index-item active">01. Title &amp; Executive Vision</div>
+    <div class="index-item">02. Cyber-Luxury Visual Engine</div>
+    <div class="index-item">03. 4 Disciplines &amp; 14 Case Studies</div>
+    <div class="index-item">04. Project System Architecture</div>
+    <div class="index-item">05. Modern Technology Stack</div>
+    <div class="index-item">06. End-to-End User Journey</div>
+    <div class="index-item">07. Zero-Friction Booking Pipeline</div>
+    <div class="index-item">08. Enterprise Security (A+ Grade)</div>
+    <div class="index-item">09. SEO &amp; Social Share Cards</div>
+    <div class="index-item">10. Core Web Vitals &amp; Audit Benchmark</div>
+    <div class="index-item">11. Dual Cloud Hosting Readiness</div>
+    <div class="index-item">12. Delivery Sign-Off &amp; Handover</div>
   </aside>
 
   <!-- Slide Viewport -->
@@ -1467,87 +1467,7 @@
     </div>
   </footer>
 
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const slideNumber = document.getElementById('slideNumber');
-    const progressBar = document.getElementById('progressBar');
-    const indexDrawer = document.getElementById('indexDrawer');
-    const tocBtn = document.getElementById('tocBtn');
-    const fullscreenBtn = document.getElementById('fullscreenBtn');
-    const printBtn = document.getElementById('printBtn');
-    const indexItems = document.querySelectorAll('.index-item');
-
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-
-    function updateSlide(index) {
-      currentSlide = index;
-      slides.forEach((s, i) => {
-        s.classList.toggle('active', i === index);
-      });
-
-      indexItems.forEach((item, i) => {
-        item.classList.toggle('active', i === index);
-      });
-
-      slideNumber.textContent = `${String(index + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
-      progressBar.style.width = `${((index + 1) / totalSlides) * 100}%`;
-
-      prevBtn.disabled = index === 0;
-      nextBtn.disabled = index === totalSlides - 1;
-
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-
-    function goToSlide(index) {
-      updateSlide(index);
-      indexDrawer.classList.remove('open');
-    }
-
-    prevBtn.addEventListener('click', () => {
-      if (currentSlide > 0) updateSlide(currentSlide - 1);
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (currentSlide < totalSlides - 1) updateSlide(currentSlide + 1);
-    });
-
-    tocBtn.addEventListener('click', () => {
-      indexDrawer.classList.toggle('open');
-    });
-
-    fullscreenBtn.addEventListener('click', () => {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => alert(`Fullscreen error: ${err.message}`));
-      } else {
-        document.exitFullscreen();
-      }
-    });
-
-    printBtn.addEventListener('click', () => {
-      window.print();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === 'Space') {
-        if (currentSlide < totalSlides - 1) updateSlide(currentSlide + 1);
-      } else if (e.key === 'ArrowLeft') {
-        if (currentSlide > 0) updateSlide(currentSlide - 1);
-      } else if (e.key === 'Escape') {
-        indexDrawer.classList.remove('open');
-      }
-    });
-
-    // Close drawer when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!indexDrawer.contains(e.target) && e.target !== tocBtn) {
-        indexDrawer.classList.remove('open');
-      }
-    });
-
-    updateSlide(0);
-  </script>
+  <!-- Presentation Interactive Engine (Complies with Strict CSP A+ Standard) -->
+  <script src="presentation.js?v=2"></script>
 </body>
 </html>
