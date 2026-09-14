@@ -54,12 +54,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
   background-color: var(--void-black);
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -70,30 +72,83 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  selection-background-color: var(--neon-lime);
-  selection-color: var(--void-black);
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* UI Elements & Controls: eliminate mobile blue tap flash and accidental text selection */
+a, button, input, textarea, select,
+.btn, .filter-btn, .case-cat-pill, .country-pill,
+.hero-badge, .card-tag, .tag, .badge, .chip,
+.nav-link, .nav-logo, .menu-toggle, .nav-item,
+.project-card, .service-card, .expertise-card,
+.stat-item, .stat-number, .stat-label,
+.ticker-wrap, .ticker-item, .marquee-item,
+.modal-close-btn, .floating-whatsapp,
+.accordion-header, .showreel-trigger,
+.country-dot, .filter-bar, .portfolio-filter {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  outline: none;
+}
+
+/* Eliminate default browser blue focus rings on tap */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--neon-lime);
+  outline-offset: 2px;
+}
+
+/* On mobile touch devices: prevent accidental text selection while dragging or scrolling */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Keep form inputs editable and selectable */
+  input, textarea, [contenteditable="true"] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+}
+
+/* Luxury Branded Selection: replaces any blue selection with cyber Neon Lime on Black */
 ::selection {
-  background-color: var(--neon-lime);
-  color: var(--void-black);
+  background-color: var(--neon-lime) !important;
+  color: var(--void-black) !important;
+}
+
+::-moz-selection {
+  background-color: var(--neon-lime) !important;
+  color: var(--void-black) !important;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 img {
   max-width: 100%;
   height: auto;
   display: block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 button, input, textarea {
   font-family: inherit;
   border: none;
   outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Scrollbar */

@@ -26,6 +26,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -36,7 +37,30 @@
       overflow-y: auto;
       min-height: 100vh;
       user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
       -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background-color: var(--neon-lime) !important;
+      color: #000000 !important;
+    }
+
+    ::-moz-selection {
+      background-color: var(--neon-lime) !important;
+      color: #000000 !important;
+    }
+
+    a, button, input, select, textarea,
+    .nav-btn, .icon-btn, .index-item, .arch-node, .arch-chip,
+    .audit-card, .cwv-pill, .deck-card, .journey-step, .slide-badge {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+      outline: none;
     }
 
     /* Custom sleek dark scrollbar */
