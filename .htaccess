@@ -1,0 +1,79 @@
+# ==============================================================================
+# Z99 CREATIVE STUDIO - APACHE / HOSTINGER CONFIGURATION (.htaccess)
+# ==============================================================================
+
+# 1. FORCE HTTPS REDIRECT
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# 2. CLEAN URLS (Removes .html extension from browser address bar)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Redirect /page.html to /page
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+  RewriteRule ^ %1 [R=301,L]
+
+  # Internally resolve /page to page.html
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [NC,L]
+</IfModule>
+
+# 3. CUSTOM 404 ERROR PAGE
+ErrorDocument 404 /404.html
+
+# 4. HTTP SECURITY HEADERS (A+ Security Standard)
+<IfModule mod_headers.c>
+  # Content Security Policy (Allows Google Fonts, YouTube 4K modals, and Vercel Analytics)
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' https://vitals.vercel-insights.com https://*.vercel-insights.com https://va.vercel-scripts.com; media-src 'self' https: blob: data:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me;"
+
+  # Clickjacking Defense
+  Header set X-Frame-Options "SAMEORIGIN"
+
+  # Prevent MIME-Type Sniffing
+  Header set X-Content-Type-Options "nosniff"
+
+  # Referrer Privacy
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Restrict Unused Hardware Sensors
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+
+  # Strict Transport Security (HSTS - 2 Years)
+  Header set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+  # Legacy XSS Filter
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# 5. BROWSER CACHING (1 Year Immutable for Static Media)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+
+  # Images & Icons
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # Web Fonts
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+
+  # CSS & JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# 6. GZIP COMPRESSION
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
+</IfModule>
