@@ -237,6 +237,31 @@ function initNavbar() {
       }
     });
   });
+
+  // Legal page sticky sidebar scroll spy
+  const legalCards = document.querySelectorAll('.legal-card[id]');
+  const legalNavItems = document.querySelectorAll('.legal-nav-item');
+
+  if (legalCards.length > 0 && legalNavItems.length > 0) {
+    window.addEventListener('scroll', () => {
+      let scrollY = window.pageYOffset + 180;
+      legalCards.forEach(card => {
+        const cardTop = card.offsetTop;
+        const cardHeight = card.offsetHeight;
+        const cardId = card.getAttribute('id');
+
+        if (scrollY >= cardTop && scrollY < cardTop + cardHeight) {
+          legalNavItems.forEach(item => {
+            item.classList.remove('active');
+            const link = item.querySelector('a');
+            if (link && link.getAttribute('href') === `#${cardId}`) {
+              item.classList.add('active');
+            }
+          });
+        }
+      });
+    }, { passive: true });
+  }
 }
 
 /* ==========================================================================
