@@ -2,6 +2,9 @@
   "name": "z9-creative-studio",
   "version": 2,
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/project-(.*)", "destination": "/projects/project-$1", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
