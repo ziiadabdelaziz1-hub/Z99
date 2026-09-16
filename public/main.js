@@ -715,12 +715,6 @@ function initCustomCursor() {
   ring.id = 'cursorRing';
   ring.className = 'cursor-ring';
 
-  const label = document.createElement('span');
-  label.id = 'cursorLabel';
-  label.className = 'cursor-label';
-  label.textContent = 'VIEW';
-  ring.appendChild(label);
-
   document.body.appendChild(dot);
   document.body.appendChild(ring);
 
@@ -786,22 +780,7 @@ function initCustomCursor() {
     const target = e.target;
     if (!target) return;
 
-    // 1. Media & Project Cards
-    const mediaTarget = target.closest('.bento-card, .moodboard-item, .cinema-video-wrapper, .media-zoomable, .card-media-wrapper, .about-visual-frame');
-    if (mediaTarget) {
-      if (mediaTarget.closest('.moodboard-grid') || mediaTarget.classList.contains('media-zoomable')) {
-        label.textContent = 'ZOOM';
-      } else if (mediaTarget.classList.contains('cinema-video-wrapper')) {
-        label.textContent = 'PLAY';
-      } else {
-        label.textContent = 'VIEW';
-      }
-      ring.classList.add('is-media');
-      dot.classList.add('is-media');
-      return;
-    }
-
-    // 2. Form Inputs
+    // 1. Form Inputs
     const inputTarget = target.closest('input, textarea, select');
     if (inputTarget) {
       ring.classList.add('is-input');
@@ -809,8 +788,8 @@ function initCustomCursor() {
       return;
     }
 
-    // 3. Interactive Buttons, Links & Navigation Pills
-    const linkTarget = target.closest('a, button, .btn, .case-cat-pill, .carousel-btn, .filter-btn, [role="button"], label, .lightbox-arrow, .lightbox-close, .nav-link, .brand-logo-link');
+    // 2. Interactive Clickable Elements (Buttons, Links, Cards, Media)
+    const linkTarget = target.closest('a, button, .btn, .case-cat-pill, .carousel-btn, .filter-btn, [role="button"], label, .lightbox-arrow, .lightbox-close, .nav-link, .brand-logo-link, .moodboard-item, .cinema-video-wrapper, .media-zoomable');
     if (linkTarget) {
       ring.classList.add('is-hovered');
       dot.classList.add('is-hovered');
@@ -822,19 +801,13 @@ function initCustomCursor() {
     const target = e.target;
     if (!target) return;
 
-    const mediaTarget = target.closest('.bento-card, .moodboard-item, .cinema-video-wrapper, .media-zoomable, .card-media-wrapper, .about-visual-frame');
-    if (mediaTarget) {
-      ring.classList.remove('is-media');
-      dot.classList.remove('is-media');
-    }
-
     const inputTarget = target.closest('input, textarea, select');
     if (inputTarget) {
       ring.classList.remove('is-input');
       dot.classList.remove('is-input');
     }
 
-    const linkTarget = target.closest('a, button, .btn, .case-cat-pill, .carousel-btn, .filter-btn, [role="button"], label, .lightbox-arrow, .lightbox-close, .nav-link, .brand-logo-link');
+    const linkTarget = target.closest('a, button, .btn, .case-cat-pill, .carousel-btn, .filter-btn, [role="button"], label, .lightbox-arrow, .lightbox-close, .nav-link, .brand-logo-link, .moodboard-item, .cinema-video-wrapper, .media-zoomable');
     if (linkTarget) {
       ring.classList.remove('is-hovered');
       dot.classList.remove('is-hovered');
