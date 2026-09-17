@@ -17,9 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initVideoModal();
   initContactForm();
   initMoodboardLightbox();
-  initCustomCursor();
   initCustomSelect();
-  initIframeCursorOverlay();
   initCategoryPillsScroll();
   initInstantNavigation();
 });
@@ -700,128 +698,7 @@ function initMoodboardLightbox() {
   });
 }
 
-/* ==========================================================================
-   9. BESPOKE STUDIO CURSOR (Fluid Inertia & Micro-Interactions)
-   ========================================================================== */
-function initCustomCursor() {
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  if (document.getElementById('cursorDot')) return;
 
-  const dot = document.createElement('div');
-  dot.id = 'cursorDot';
-  dot.className = 'cursor-dot';
-
-  const ring = document.createElement('div');
-  ring.id = 'cursorRing';
-  ring.className = 'cursor-ring';
-
-  document.body.appendChild(dot);
-  document.body.appendChild(ring);
-
-  let mouseX = -100;
-  let mouseY = -100;
-  let ringX = -100;
-  let ringY = -100;
-  let isVisible = false;
-  let isClicked = false;
-  let rafId = null;
-
-  function render() {
-    if (isVisible) {
-      const lerp = 0.18;
-      ringX += (mouseX - ringX) * lerp;
-      ringY += (mouseY - ringY) * lerp;
-
-      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) ${isClicked ? 'scale(0.85)' : ''}`;
-    }
-    rafId = requestAnimationFrame(render);
-  }
-  rafId = requestAnimationFrame(render);
-
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-
-    if (!isVisible) {
-      isVisible = true;
-      ringX = mouseX;
-      ringY = mouseY;
-      dot.classList.add('active');
-      ring.classList.add('active');
-    }
-  }, { passive: true });
-
-  document.addEventListener('mouseleave', () => {
-    isVisible = false;
-    dot.classList.remove('active');
-    ring.classList.remove('active');
-  });
-
-  document.addEventListener('mouseenter', () => {
-    isVisible = true;
-    dot.classList.add('active');
-    ring.classList.add('active');
-  });
-
-  window.addEventListener('mousedown', () => {
-    isClicked = true;
-    ring.classList.add('is-clicked');
-    dot.classList.add('is-clicked');
-  });
-
-  window.addEventListener('mouseup', () => {
-    isClicked = false;
-    ring.classList.remove('is-clicked');
-    dot.classList.remove('is-clicked');
-  });
-
-  document.addEventListener('mouseover', (e) => {
-    const target = e.target;
-    if (!target) return;
-
-    // 1. Form Inputs
-    const inputTarget = target.closest('input, textarea, select');
-    if (inputTarget) {
-      ring.classList.add('is-input');
-      dot.classList.add('is-input');
-      return;
-    }
-
-    // 2. Interactive Clickable Elements (Buttons, Links, Cards, Media)
-    const linkTarget = target.closest('a, button, .btn, .case-cat-pill, .carousel-btn, .filter-btn, [role="button"], label, .lightbox-arrow, .lightbox-close, .nav-link, .brand-logo-link, .moodboard-item, .cinema-video-wrapper, .media-zoomable');
-    if (linkTarget) {
-      ring.classList.add('is-hovered');
-      dot.classList.add('is-hovered');
-      return;
-    }
-  });
-
-  document.addEventListener('mouseout', (e) => {
-    const target = e.target;
-    if (!target) return;
-
-    const inputTarget = target.closest('input, textarea, select');
-    if (inputTarget) {
-      ring.classList.remove('is-input');
-      dot.classList.remove('is-input');
-    }
-
-    const linkTarget = target.closest('a, button, .btn, .case-cat-pill, .carousel-btn, .filter-btn, [role="button"], label, .lightbox-arrow, .lightbox-close, .nav-link, .brand-logo-link, .moodboard-item, .cinema-video-wrapper, .media-zoomable');
-    if (linkTarget) {
-      ring.classList.remove('is-hovered');
-      dot.classList.remove('is-hovered');
-    }
-  });
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      if (rafId) cancelAnimationFrame(rafId);
-    } else {
-      rafId = requestAnimationFrame(render);
-    }
-  });
-}
 
 /* ==========================================================================
    10. CUSTOM BRAND SELECT DROPDOWN (Acid Lime Highlight)
@@ -915,48 +792,7 @@ function initCustomSelect() {
   });
 }
 
-/* ==========================================================================
-   11. IFRAME CURSOR OVERLAY (keeps custom cursor alive over YouTube iframes)
-   ========================================================================== */
-function initIframeCursorOverlay() {
-  // Only needed on devices where the custom cursor is active
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
-  function attachOverlay(wrapper) {
-    if (wrapper.querySelector('.iframe-cursor-overlay')) return;
-
-    const overlay = document.createElement('div');
-    overlay.className = 'iframe-cursor-overlay';
-    wrapper.appendChild(overlay);
-
-    // On click: lift overlay so YouTube receives the click, then restore on leave
-    overlay.addEventListener('click', () => {
-      overlay.classList.add('clicked');
-    });
-
-    // Restore overlay when mouse leaves the wrapper
-    wrapper.addEventListener('mouseleave', () => {
-      overlay.classList.remove('clicked');
-    });
-  }
-
-  // Attach to all existing wrappers
-  document.querySelectorAll('.cinema-video-wrapper').forEach(attachOverlay);
-
-  // Also watch for dynamically injected wrappers (e.g. modal video)
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((node) => {
-        if (node.nodeType !== 1) return;
-        if (node.classList && node.classList.contains('cinema-video-wrapper')) {
-          attachOverlay(node);
-        }
-        node.querySelectorAll && node.querySelectorAll('.cinema-video-wrapper').forEach(attachOverlay);
-      });
-    });
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
-}
 
 /* ==========================================================================
    14. INSTANT NAVIGATION & INTELLIGENT PREFETCH (Zero Mobile Click Delay)
