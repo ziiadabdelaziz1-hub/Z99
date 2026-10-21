@@ -1,5 +1,5 @@
 # Z99 Creative Studio - Robots Configuration
-# https://z9-creative-studio.vercel.app
+# https://z99creativestudio.com
 
 User-agent: *
 Allow: /
@@ -7,4 +7,4 @@ Disallow: /_review_*.html
 Disallow: /_vault/
 
 # Sitemap
-Sitemap: https://z9-creative-studio.vercel.app/sitemap.xml
+Sitemap: https://z99creativestudio.com/sitemap.xml
